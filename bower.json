@@ -1,0 +1,8 @@
+{
+  "name": "marked-js",
+  "private": true,
+  "dependencies": {
+    "markedjs": "*",
+    "polymer": "Polymer/polymer#master"
+  }
+}

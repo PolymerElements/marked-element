@@ -1,4 +1,4 @@
 marked-element
 ==============
 
-Element interface to the marked library
+See the [component page](http://polymer.github.io/marked-element) for more information.
