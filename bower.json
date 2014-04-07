@@ -2,7 +2,7 @@
   "name": "marked-js",
   "private": true,
   "dependencies": {
-    "markedjs": "*",
+    "marked": "*",
     "polymer": "Polymer/polymer#master"
   }
 }
