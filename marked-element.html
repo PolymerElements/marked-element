@@ -10,35 +10,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="marked-import.html">
 
+<!--
+Element wrapper for the `marked` (http://marked.org/) library.
+
+@class marked-element
+@blurb Element wrapper for the marked library.
+@status alpha
+@snap snap.png
+-->
 <polymer-element name="marked-element" attributes="text">
+<script>
 
-  <script>
+  Polymer('marked-element', {
 
-    Polymer('marked-element', {
+    text: '',
 
-      text: '',
-
-      enteredView: function() {
-        marked.setOptions({
-          highlight: this.highlight.bind(this)
-        });
-        if (!this.text) {
-          this.text = this.innerHTML;
-        }
-      },
-
-      textChanged: function () {
-        this.innerHTML = marked(this.text);
-      },
-
-      highlight: function(code, lang) {
-        var event = this.fire('marked-js-highlight', {code: code, lang: lang});
-        return event.detail.code || code;
+    attached: function() {
+      marked.setOptions({
+        highlight: this.highlight.bind(this)
+      });
+      if (!this.text) {
+        this.text = this.innerHTML;
       }
+    },
 
-    });
+    textChanged: function () {
+      this.innerHTML = marked(this.text);
+    },
 
-  </script>
+    highlight: function(code, lang) {
+      var event = this.fire('marked-js-highlight', {code: code, lang: lang});
+      return event.detail.code || code;
+    }
 
+  });
+
+</script>
 </polymer-element>
 
