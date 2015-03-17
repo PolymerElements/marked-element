@@ -40,9 +40,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     suite('<marked-element>', function() {
 
-      test('preserves camelCase code', function() {
-        var markedElement = fixture('CamelCaseHTML');
+      var markedElement
 
+      setup(function() {
+        markedElement = fixture('CamelCaseHTML');
+      });
+
+      test('preserves camelCase code', function() {
         // If Markdown content were put into a `<template>` or directly into the
         // DOM, it would be rendered as DOM and be converted from camelCase to
         // lowercase per HTML parsing rules. By using `<script>` descendants,
