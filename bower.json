@@ -2,7 +2,7 @@
   "name": "marked-element",
   "private": true,
   "dependencies": {
-    "marked": "*",
-    "polymer": "Polymer/polymer#master"
+    "polymer": "Polymer/polymer#master",
+    "marked": "~0.3.3"
   }
 }
