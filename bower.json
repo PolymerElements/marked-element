@@ -1,8 +1,16 @@
 {
   "name": "marked-element",
   "private": true,
+  "authors": [
+    "The Polymer Project Authors"
+  ],
   "dependencies": {
     "polymer": "Polymer/polymer#master",
     "marked": "~0.3.3"
+  },
+  "main": "marked-element.html",
+  "repo": {
+    "type": "git",
+    "url": "git://github.com/Polymer/marked-element.git"
   }
 }
