@@ -40,7 +40,7 @@ Element wrapper for the `marked` (http://marked.org/) library.
 
     },
 
-    attached: function() {
+    ready: function() {
       marked.setOptions({
         highlight: this.highlight.bind(this)
       });
