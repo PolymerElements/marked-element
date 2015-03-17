@@ -47,10 +47,10 @@ Element wrapper for the `marked` (http://marked.org/) library.
 
       if (!this.text) {
         // Use the Markdown from the first `<script>` descendant whose MIME type starts with
-        // "text/markdown". Script elements beyond the first are ignored
+        // "text/markdown". Script elements beyond the first are ignored.
         var markdownEl = Polymer.dom(this).querySelector('[type^="text/markdown"]');
         if (markdownEl != null) {
-          this.text = markdownEl.innerHTML;
+          this.text = markdownEl.textContent;
         }
       }
     },
