@@ -13,5 +13,9 @@
   "repo": {
     "type": "git",
     "url": "git://github.com/Polymer/marked-element.git"
+  },
+  "devDependencies": {
+    "webcomponentsjs": "~0.5.5",
+    "test-fixture": "Polymer/test-fixture#~0.1.0"
   }
 }
