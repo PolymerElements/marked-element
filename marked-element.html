@@ -1,5 +1,5 @@
 <!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
@@ -15,31 +15,50 @@ Element wrapper for the `marked` (http://marked.org/) library.
 
 @class marked-element
 @blurb Element wrapper for the marked library.
-@status alpha
-@snap snap.png
 -->
-<polymer-element name="marked-element" attributes="text">
+<dom-module id="marked-element">
+
+  <template>
+    <div id="content"></div>
+  </template>
+
+</dom-module>
+
 <script>
 
-  Polymer('marked-element', {
+  'use strict';
 
-    text: '',
+  Polymer({
 
-    attached: function() {
+    is: 'marked-element',
+
+    properties: {
+
+      text: {
+        observer: 'textChanged',
+        type: String,
+        value: null
+      }
+
+    },
+
+    ready: function() {
       marked.setOptions({
         highlight: this.highlight.bind(this)
       });
+
       if (!this.text) {
-        this.text = this.innerHTML;
+        // Use the Markdown from the first `<script>` descendant whose MIME type starts with
+        // "text/markdown". Script elements beyond the first are ignored.
+        var markdownElement = Polymer.dom(this).querySelector('[type^="text/markdown"]');
+        if (markdownElement != null) {
+          this.text = markdownElement.textContent;
+        }
       }
     },
 
-    textChanged: function (oldVal, newVal) {
-      if (newVal) {
-        this.innerHTML = marked(this.text);
-      } else {
-        this.innerHTML = "";
-      }
+    textChanged: function (newVal, oldVal) {
+      this.$.content.innerHTML = newVal ? marked(this.text) : '';
     },
 
     highlight: function(code, lang) {
@@ -50,5 +69,3 @@ Element wrapper for the `marked` (http://marked.org/) library.
   });
 
 </script>
-</polymer-element>
-
