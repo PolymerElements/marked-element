@@ -50,9 +50,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     'use strict';
 
-    // Replace '<' and '>' with their character entity equivalents.
+    // Replace reserved HTML characters with their character entity equivalents to match the
+    // transform done by Markdown.
+    //
+    // The Marked library itself is not used because it wraps code blocks in `<code><pre>`, which is
+    // superfluous for testing puproses.
     function escapeHTML(string) {
-      return string.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      var span = document.createElement('span');
+      span.textContent = string;
+      return span.innerHTML;
     }
 
     suite('<marked-element>', function() {
