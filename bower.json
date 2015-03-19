@@ -5,7 +5,7 @@
     "The Polymer Project Authors"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#master",
+    "polymer": "Polymer/polymer#0.8-preview",
     "marked": "~0.3.3"
   },
   "main": "marked-element.html",
