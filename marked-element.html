@@ -60,7 +60,7 @@ the script content will _not_ update the rendered markdown!
     properties: {
 
       markdown: {
-        observer: '_markdownChanged',
+        observer: 'render',
         type: String,
         value: null
       }
@@ -68,11 +68,6 @@ the script content will _not_ update the rendered markdown!
     },
 
     ready: function() {
-      // `marked` library is available at this global
-      marked.setOptions({
-        highlight: this._highlight.bind(this)
-      });
-
       if (!this.markdown) {
         // Use the Markdown from the first `<script>` descendant whose MIME type starts with
         // "text/markdown". Script elements beyond the first are ignored.
@@ -83,14 +78,30 @@ the script content will _not_ update the rendered markdown!
       }
     },
 
-    _markdownChanged: function (newVal, oldVal) {
-      this.$.content.innerHTML = newVal ? marked(this.markdown) : '';
+    /**
+     * Renders `markdown` into this element's DOM.
+     *
+     * This is automatically called whenever the `markdown` property is changed.
+     *
+     * The only case where you should be calling this is if you are providing
+     * markdown via `<script type="text/markdown">` after this element has been
+     * constructed (or updating that markdown).
+     */
+    render: function() {
+      if (!this.markdown) {
+        this.$.content.innerHTML = '';
+        return;
+      }
+
+      this.$.content.innerHTML = marked(this.markdown, {
+        highlight: this._highlight.bind(this),
+      });
     },
 
     _highlight: function(code, lang) {
       var event = this.fire('marked-js-highlight', {code: code, lang: lang});
       return event.detail.code || code;
-    }
+    },
 
   });
 
