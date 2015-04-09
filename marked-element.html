@@ -35,7 +35,7 @@ Element wrapper for the `marked` (http://marked.org/) library.
     properties: {
 
       markdown: {
-        observer: 'markdownChanged',
+        observer: '_markdownChanged',
         type: String,
         value: null
       }
@@ -45,7 +45,7 @@ Element wrapper for the `marked` (http://marked.org/) library.
     ready: function() {
       // `marked` library is available at this global
       marked.setOptions({
-        highlight: this.highlight.bind(this)
+        highlight: this._highlight.bind(this)
       });
 
       if (!this.markdown) {
@@ -58,11 +58,11 @@ Element wrapper for the `marked` (http://marked.org/) library.
       }
     },
 
-    markdownChanged: function (newVal, oldVal) {
+    _markdownChanged: function (newVal, oldVal) {
       this.$.content.innerHTML = newVal ? marked(this.markdown) : '';
     },
 
-    highlight: function(code, lang) {
+    _highlight: function(code, lang) {
       var event = this.fire('marked-js-highlight', {code: code, lang: lang});
       return event.detail.code || code;
     }
