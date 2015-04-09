@@ -34,8 +34,8 @@ Element wrapper for the `marked` (http://marked.org/) library.
 
     properties: {
 
-      text: {
-        observer: 'textChanged',
+      markdown: {
+        observer: 'markdownChanged',
         type: String,
         value: null
       }
@@ -43,22 +43,23 @@ Element wrapper for the `marked` (http://marked.org/) library.
     },
 
     ready: function() {
+      // `marked` library is available at this global
       marked.setOptions({
         highlight: this.highlight.bind(this)
       });
 
-      if (!this.text) {
+      if (!this.markdown) {
         // Use the Markdown from the first `<script>` descendant whose MIME type starts with
         // "text/markdown". Script elements beyond the first are ignored.
         var markdownElement = Polymer.dom(this).querySelector('[type^="text/markdown"]');
         if (markdownElement != null) {
-          this.text = markdownElement.textContent;
+          this.markdown = markdownElement.textContent;
         }
       }
     },
 
-    textChanged: function (newVal, oldVal) {
-      this.$.content.innerHTML = newVal ? marked(this.text) : '';
+    markdownChanged: function (newVal, oldVal) {
+      this.$.content.innerHTML = newVal ? marked(this.markdown) : '';
     },
 
     highlight: function(code, lang) {
