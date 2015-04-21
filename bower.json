@@ -16,6 +16,7 @@
     "url": "git://github.com/Polymer/marked-element.git"
   },
   "devDependencies": {
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^0.8.6",
     "test-fixture": "Polymer/test-fixture#^0.2.0"
   }
 }
