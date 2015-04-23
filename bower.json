@@ -1,12 +1,12 @@
 {
   "name": "marked-element",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "private": true,
   "authors": [
     "The Polymer Project Authors (https://polymer.github.io/AUTHORS.txt)"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#v0.8.0-rc.6",
+    "polymer": "Polymer/polymer#v0.8.0-rc.7",
     "marked": "~0.3.3"
   },
   "license": "https://polymer.github.io/LICENSE.txt",
