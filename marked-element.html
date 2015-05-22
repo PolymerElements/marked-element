@@ -115,6 +115,8 @@ the script content will _not_ update the rendered markdown!
       this.$.content.innerHTML = marked(this.markdown, {
         highlight: this._highlight.bind(this),
       });
+
+      this.fire('marked-render-complete');
     },
 
     _highlight: function(code, lang) {
@@ -134,7 +136,7 @@ the script content will _not_ update the rendered markdown!
       }, null);
 
       return lines.map(function(l) { return l.substr(indent); }).join('\n');
-    },
+    }
 
   });
 

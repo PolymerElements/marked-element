@@ -106,6 +106,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     });
 
+    suite('events', function() {
+      var markedElement;
+
+      setup(function() {
+        markedElement = fixture('CamelCaseHTML');
+      });
+
+      test('render() fires marked-render-complete', function(done) {
+        markedElement.addEventListener('marked-render-complete', function() {
+          done();
+        });
+        markedElement.render();
+      });
+    });
+
   </script>
 
 </body>
