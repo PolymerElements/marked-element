@@ -6,6 +6,14 @@
   "authors": [
     "The Polymer Project Authors (https://polymer.github.io/AUTHORS.txt)"
   ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "marked",
+    "markdown",
+    "container",
+    "wrapper"
+  ],
   "dependencies": {
     "marked": "~0.3.3",
     "polymer": "Polymer/polymer#^0.9.0"
