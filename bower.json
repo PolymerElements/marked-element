@@ -25,6 +25,7 @@
     "url": "git://github.com/Polymer/marked-element.git"
   },
   "devDependencies": {
+    "paper-styles": "PolymerElements/paper-styles#^1.0.4",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*",
