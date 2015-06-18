@@ -20,7 +20,7 @@
   },
   "license": "https://polymer.github.io/LICENSE.txt",
   "main": "marked-element.html",
-  "repo": {
+  "repository": {
     "type": "git",
     "url": "git://github.com/Polymer/marked-element.git"
   },
