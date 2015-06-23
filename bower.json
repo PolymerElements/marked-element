@@ -1,6 +1,6 @@
 {
   "name": "marked-element",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Element wrapper for the marked library",
   "private": true,
   "authors": [
@@ -22,7 +22,7 @@
   "main": "marked-element.html",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Polymer/marked-element.git"
+    "url": "git://github.com/PolymerElements/marked-element.git"
   },
   "devDependencies": {
     "paper-styles": "PolymerElements/paper-styles#^1.0.4",
