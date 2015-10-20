@@ -92,8 +92,25 @@ as you would a regular DOM element:
         observer: 'render',
         type: String,
         value: null
+      },
+      /** Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior. */
+      pedantic: {
+        observer: 'render',
+        type: Boolean,
+        value: false
+      },
+      /** Sanitize the output. Ignore any HTML that has been input. */
+      sanitize: {
+        observer: 'render',
+        type: Boolean,
+        value: false
+      },
+      /** Use "smart" typograhic punctuation for things like quotes and dashes. */
+      smartypants: {
+        observer: 'render',
+        type: Boolean,
+        value: false
       }
-
     },
 
     ready: function() {
@@ -154,10 +171,13 @@ as you would a regular DOM element:
         Polymer.dom(this._outputElement).innerHTML = '';
         return;
       }
-
-      Polymer.dom(this._outputElement).innerHTML = marked(this.markdown, {
+      var opts = {
         highlight: this._highlight.bind(this),
-      });
+        sanitize: this.sanitize,
+        pedantic: this.pedantic,
+        smartypants: this.smartypants
+      };
+      Polymer.dom(this._outputElement).innerHTML = marked(this.markdown, opts);
     },
 
     _highlight: function(code, lang) {
