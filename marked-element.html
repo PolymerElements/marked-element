@@ -87,25 +87,33 @@ as you would a regular DOM element:
 
     properties: {
 
-      /** The markdown source that should be rendered by this element. */
+      /**
+       * The markdown source that should be rendered by this element.
+       */
       markdown: {
         observer: 'render',
         type: String,
         value: null
       },
-      /** Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior. */
+      /**
+       * Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior.
+       */
       pedantic: {
         observer: 'render',
         type: Boolean,
         value: false
       },
-      /** Sanitize the output. Ignore any HTML that has been input. */
+      /**
+       * Sanitize the output. Ignore any HTML that has been input.
+       */
       sanitize: {
         observer: 'render',
         type: Boolean,
         value: false
       },
-      /** Use "smart" typograhic punctuation for things like quotes and dashes. */
+      /**
+       * Use "smart" typographic punctuation for things like quotes and dashes.
+       */
       smartypants: {
         observer: 'render',
         type: Boolean,
