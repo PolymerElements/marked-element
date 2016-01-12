@@ -12,7 +12,7 @@ addons:
       - google-chrome-stable
       - g++-4.8
 before_script:
-  - npm install -g web-component-tester bower polylint
+  - npm install -g bower polylint web-component-tester
   - bower install
   - polylint
 script:
