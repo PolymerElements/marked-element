@@ -172,6 +172,14 @@ as you would a regular DOM element:
     },
 
     /**
+     * The `marked-render-complete` event is fired once Markdown to HTML
+     * conversion has finished, and the DOM has been populated via the resulting
+     * HTML.
+     *
+     * @event marked-render-complete
+     */
+
+    /**
      * Renders `markdown` into this element's DOM.
      *
      * This is automatically called whenever the `markdown` property is changed.
@@ -193,6 +201,7 @@ as you would a regular DOM element:
         smartypants: this.smartypants
       };
       Polymer.dom(this._outputElement).innerHTML = marked(this.markdown, opts);
+      this.fire('marked-render-complete');
     },
 
     _highlight: function(code, lang) {
@@ -212,7 +221,7 @@ as you would a regular DOM element:
       }, null);
 
       return lines.map(function(l) { return l.substr(indent); }).join('\n');
-    },
+    }
 
   });
 
