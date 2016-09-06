@@ -66,6 +66,10 @@ as you would a regular DOM element:
 <dom-module id="marked-element">
   <template>
     <style>
+      :host {
+        display: inline-block;
+      }
+      
       /* Thanks IE 10. */
       .hidden {
         display: none !important;
