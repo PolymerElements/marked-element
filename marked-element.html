@@ -75,6 +75,7 @@ as you would a regular DOM element:
         display: none !important;
       }
     </style>
+    <slot name="markdown-html"></slot>
     <content select=".markdown-html"></content>
     <div id="content" class="hidden"></div>
   </template>
@@ -214,11 +215,11 @@ as you would a regular DOM element:
         smartypants: this.smartypants
       };
       Polymer.dom(this._outputElement).innerHTML = marked(this.markdown, opts, this.callback);
-      this.fire('marked-render-complete');
+      this.fire('marked-render-complete', {}, {composed: true});
     },
 
     _highlight: function(code, lang) {
-      var event = this.fire('syntax-highlight', {code: code, lang: lang});
+      var event = this.fire('syntax-highlight', {code: code, lang: lang}, {composed: true});
       return event.detail.code || code;
     },
 
