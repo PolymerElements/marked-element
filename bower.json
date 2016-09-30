@@ -1,6 +1,6 @@
 {
   "name": "marked-element",
-  "version": "1.3.1",
+  "version": "2.0.0",
   "description": "Element wrapper for the marked library",
   "private": true,
   "authors": [
@@ -15,8 +15,8 @@
     "wrapper"
   ],
   "dependencies": {
-    "marked": "~0.3.3",
-    "polymer": "Polymer/polymer#^1.1.0"
+    "marked": "~0.3.6",
+    "polymer": "Polymer/polymer#2.0-preview"
   },
   "license": "https://polymer.github.io/LICENSE.txt",
   "main": "marked-element.html",
@@ -25,11 +25,17 @@
     "url": "git://github.com/PolymerElements/marked-element.git"
   },
   "devDependencies": {
-    "paper-styles": "PolymerElements/paper-styles#^1.0.4",
+    "paper-styles": "PolymerElements/paper-styles#2.0-preview",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-    "test-fixture": "polymerelements/test-fixture#^1.0.0",
-    "web-component-tester": "^4.0.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+    "test-fixture": "polymerelements/test-fixture#custom-elements-v1",
+    "web-component-tester": "^4.0.0"
   },
-  "ignore": []
+  "ignore": [],
+  "resolutions": {
+    "test-fixture": "custom-elements-v1",
+    "paper-styles": "2.0-preview",
+    "polymer": "2.0-preview",
+    "iron-flex-layout": "2.0-preview",
+    "webcomponentsjs": "v1"
+  }
 }
