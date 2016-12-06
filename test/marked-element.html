@@ -237,8 +237,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('in code blocks', function() {
-          proofElement.innerHTML = '<div camelCase></div>';
+          Polymer.dom(proofElement).innerHTML = '<div camelCase></div>';
           expect(markedElement.$.content).to.equal(markedElement.outputElement);
+          Polymer.dom.flush();
           expect(isHidden(markedElement.$.content)).to.be.false;
 
           // If Markdown content were put into a `<template>` or directly into the DOM, it would be
@@ -261,6 +262,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('in code blocks', function() {
           proofElement.innerHTML = '<p><div></p></div>';
           expect(markedElement.$.content).to.equal(markedElement.outputElement);
+          Polymer.dom.flush();
           expect(isHidden(markedElement.$.content)).to.be.false;
 
           // If Markdown content were put into a `<template>` or directly into the DOM, it would be
