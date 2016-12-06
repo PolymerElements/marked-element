@@ -27,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="SmartyPants">
     <template>
       <marked-element smartypants>
-        <div id="output" slot="markdown-html" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
         # foo
         ...
@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="CamelCaseHTML">
     <template>
       <marked-element>
-        <div id="output" slot="markdown-html" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
 ```html
 <div camelCase></div>
@@ -52,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="BadHTML">
     <template>
       <marked-element>
-        <div id="output" slot="markdown-html" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
 ```html
 <p><div></p></div>
@@ -89,7 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="CustomCallbackFunction">
     <template>
       <marked-element>
-        <div id="output" slot="markdown-html" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
           Some content
         </script>
