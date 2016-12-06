@@ -224,7 +224,7 @@ as you would a regular DOM element:
     },
 
     get outputElement () {
-      var child = Polymer.dom(this).queryDistributedElements('.markdown-html')[0];
+      var child = Polymer.dom(this).queryDistributedElements('[slot="markdown-html"]')[0];
 
       if (child)
         return child;
