@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "marked": "~0.3.6",
-    "polymer": "Polymer/polymer#2.0-preview"
+    "polymer": "Polymer/polymer#^2.0.0-rc.1"
   },
   "devDependencies": {
     "paper-styles": "PolymerElements/paper-styles#2.0-preview",
