@@ -328,10 +328,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       test('renders remote content', function(done) {
         proofElement.innerHTML = '<h1 id="test">Test</h1>\n<p><a href="http://url.com/">Link</a></p>\n';
-        flush(function () {
-        // markedElement.render();
-          expect(outputElement.innerHTML).to.include(proofElement.innerHTML);
-          done();
+        markedElement.xhr.addEventListener('loadend', function () {
+          flush(function () {
+            expect(outputElement.innerHTML).to.include(proofElement.innerHTML);
+            done();
+          });
         });
       });
     });
