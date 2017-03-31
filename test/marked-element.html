@@ -108,6 +108,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="RemoteContent">
+    <template>
+      <marked-element>
+        <div id="output" class="markdown-html"></div>
+        <script type="text/markdown" src="test.md"></script>
+      </marked-element>
+    </template>
+  </test-fixture>
+
   <script>
     'use strict';
 
@@ -303,6 +312,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
         proofElement.innerHTML = '<a href="http://url.com" target="_blank">Link</a>';
         expect(outputElement.innerHTML).to.include(proofElement.innerHTML);
+      });
+    });
+
+    suite('<marked-element> with remote content', function() {
+      var markedElement;
+      var outputElement;
+      var proofElement;
+
+      setup(function() {
+        markedElement = fixture('RemoteContent');
+        outputElement = document.getElementById('output');
+        proofElement = document.createElement('div');
+      });
+
+      test('renders remote content', function(done) {
+        proofElement.innerHTML = '<h1 id="test">Test</h1>\n<p><a href="http://url.com/">Link</a></p>\n';
+        flush(function () {
+        // markedElement.render();
+          expect(outputElement.innerHTML).to.include(proofElement.innerHTML);
+          done();
+        });
       });
     });
 
