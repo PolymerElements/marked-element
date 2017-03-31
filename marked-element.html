@@ -19,13 +19,13 @@ as you would a normal DOM element. If you do not provide a child element
 with the `markdown-html` class, the Markdown source will still be rendered,
 but to a shadow DOM child that cannot be styled.
 
-The Markdown source can be specified either via the `markdown` attribute:
+The Markdown source can be specified via the `markdown` attribute:
 
     <marked-element markdown="`Markdown` is _awesome_!">
       <div class="markdown-html"></div>
     </marked-element>
 
-Or, you can provide it via a `<script type="text/markdown">` element child:
+Inline via a `<script type="text/markdown">` element child:
 
     <marked-element>
       <div class="markdown-html"></div>
@@ -41,6 +41,13 @@ Or, you can provide it via a `<script type="text/markdown">` element child:
         </awesome-sauce>
         ```
       </script>
+    </marked-element>
+
+Or, you can provide it a remote file via a `<script type="text/markdown" src="URL">` element child:
+
+    <marked-element>
+      <div class="markdown-html"></div>
+      <script type="text/markdown" src="../guidelines.md"></script>
     </marked-element>
 
 Note that the `<script type="text/markdown">` approach is _static_. Changes to
