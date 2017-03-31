@@ -149,6 +149,20 @@ as you would a regular DOM element:
         observer: 'render',
         type: Function,
         value: null
+      },
+      /**
+       * A reference to the XMLHttpRequest instance used to generate the
+       * network request.
+       *
+       * @type {XMLHttpRequest}
+       */
+      xhr: {
+        type: Object,
+        notify: true,
+        readOnly: true,
+        value: function() {
+          return new XMLHttpRequest();
+        }
       }
     },
 
@@ -157,7 +171,9 @@ as you would a regular DOM element:
         // Use the Markdown from the first `<script>` descendant whose MIME type starts with
         // "text/markdown". Script elements beyond the first are ignored.
         var markdownElement = Polymer.dom(this).querySelector('[type^="text/markdown"]');
-        if (markdownElement != null) {
+        if (markdownElement != null && markdownElement.src) {
+          this._request(markdownElement.src);
+        } else if (markdownElement != null) {
           this.markdown = this._unindent(markdownElement.textContent);
         }
       }
@@ -258,8 +274,25 @@ as you would a regular DOM element:
       }, null);
 
       return lines.map(function(l) { return l.substr(indent); }).join('\n');
-    }
+    },
 
+    _request: function(url) {
+      var xhr = this.xhr;
+      if (xhr.readyState > 0) { return null; }
+
+      xhr.addEventListener('loadend', function (e) {
+        var status = this.xhr.status || 0;
+        // Note: if we are using the file:// protocol, the status code will be 0
+        // for all outcomes (successful or otherwise).
+        if (status === 0 || (status >= 200 && status < 300)) {
+          this.markdown = e.target.response;
+        }
+      }.bind(this));
+
+      xhr.open('GET', url);
+      xhr.setRequestHeader('Accept', 'text/markdown');
+      xhr.send();
+    }
   });
 
 </script>
