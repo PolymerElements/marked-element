@@ -13,19 +13,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!--
 Element wrapper for the [marked](https://github.com/chjj/marked) library.
 
-`<marked-element>` accepts Markdown source, and renders it to a child
+`<marked-element>` accepts Markdown source and renders it to a child
 element with the class `markdown-html`. This child element can be styled
 as you would a normal DOM element. If you do not provide a child element
 with the `markdown-html` class, the Markdown source will still be rendered,
 but to a shadow DOM child that cannot be styled.
 
-The Markdown source can be specified via the `markdown` attribute:
+The Markdown source can be specified several ways:
+
+via the `markdown` attribute
 
     <marked-element markdown="`Markdown` is _awesome_!">
       <div class="markdown-html"></div>
     </marked-element>
 
-Inline via a `<script type="text/markdown">` element child:
+Or inline via a `<script type="text/markdown">` element child
 
     <marked-element>
       <div class="markdown-html"></div>
@@ -43,7 +45,7 @@ Inline via a `<script type="text/markdown">` element child:
       </script>
     </marked-element>
 
-Or, you can provide it a remote file via a `<script type="text/markdown" src="URL">` element child:
+Or by remote file via a `<script type="text/markdown" src="URL">` element child
 
     <marked-element>
       <div class="markdown-html"></div>
@@ -174,15 +176,17 @@ as you would a regular DOM element:
     },
 
     ready: function() {
-      if (!this.markdown) {
-        // Use the Markdown from the first `<script>` descendant whose MIME type starts with
-        // "text/markdown". Script elements beyond the first are ignored.
-        var markdownElement = Polymer.dom(this).querySelector('[type^="text/markdown"]');
-        if (markdownElement != null && markdownElement.src) {
-          this._request(markdownElement.src);
-        } else if (markdownElement != null) {
-          this.markdown = this._unindent(markdownElement.textContent);
-        }
+      if (this.markdown) return;
+
+      // Use the Markdown from the first `<script>` descendant whose MIME type starts with
+      // "text/markdown". Script elements beyond the first are ignored.
+      var markdownElement = Polymer.dom(this).querySelector('[type^="text/markdown"]');
+      if (!markdownElement) return;
+
+      if (markdownElement.src) {
+        this._request(markdownElement.src);
+      } else {
+        this.markdown = this._unindent(markdownElement.textContent);
       }
     },
 
@@ -285,7 +289,8 @@ as you would a regular DOM element:
 
     _request: function(url) {
       var xhr = this.xhr;
-      if (xhr.readyState > 0) { return null; }
+
+      if (xhr.readyState > 0) return null;
 
       xhr.addEventListener('loadend', function (e) {
         var status = this.xhr.status || 0;
