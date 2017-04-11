@@ -31,7 +31,7 @@ The Markdown source can be specified several ways:
 
 ```html
 <marked-element markdown="`Markdown` is _awesome_!">
-  <div class="markdown-html"></div>
+  <div slot="markdown-html"></div>
 </marked-element>
 ```
 
@@ -87,11 +87,11 @@ If you are using a child with the `markdown-html` class, you can style it
 as you would a regular DOM element:
 
 ```css
-.markdown-html p {
+[slot="markdown-html"] p {
   color: red;
 }
 
-.markdown-html td:first-child {
+[slot="markdown-html"] td:first-child {
   padding-left: 24px;
 }
 ```
