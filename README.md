@@ -27,7 +27,7 @@ but to a shadow DOM child that cannot be styled.
 
 The Markdown source can be specified several ways:
 
-via the `markdown` attribute
+### Use the `markdown` attribute to bind markdown
 
 ```html
 <marked-element markdown="`Markdown` is _awesome_!">
@@ -35,7 +35,7 @@ via the `markdown` attribute
 </marked-element>
 ```
 
-Or inline via a `<script type="text/markdown">` element child
+### Use `<script type="text/markdown">` element child to inline markdown
 
 ```html
 <marked-element>
@@ -55,7 +55,7 @@ Or inline via a `<script type="text/markdown">` element child
 </marked-element>
 ```
 
-Or by remote file via a `<script type="text/markdown" src="URL">` element child
+### Use `<script type="text/markdown" src="URL">` element child to specify remote markdown
 
 ```html
 <marked-element>

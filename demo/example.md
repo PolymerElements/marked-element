@@ -12,4 +12,4 @@ Example:
 
 _Nifty_ features.
 
-[![Build status](https://travis-ci.org/PolymerElements/marked-element.svg?branch=master)](https://travis-ci.org/PolymerElements/marked-element)
+![Polymer](polymer.svg)

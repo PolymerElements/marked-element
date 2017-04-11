@@ -19,15 +19,18 @@ as you would a normal DOM element. If you do not provide a child element
 with the `markdown-html` class, the Markdown source will still be rendered,
 but to a shadow DOM child that cannot be styled.
 
+
+### Markdown Content
+
 The Markdown source can be specified several ways:
 
-via the `markdown` attribute
+#### Use the `markdown` attribute to bind markdown
 
     <marked-element markdown="`Markdown` is _awesome_!">
       <div class="markdown-html"></div>
     </marked-element>
 
-Or inline via a `<script type="text/markdown">` element child
+#### Use `<script type="text/markdown">` element child to inline markdown
 
     <marked-element>
       <div class="markdown-html"></div>
@@ -45,7 +48,7 @@ Or inline via a `<script type="text/markdown">` element child
       </script>
     </marked-element>
 
-Or by remote file via a `<script type="text/markdown" src="URL">` element child
+#### Use `<script type="text/markdown" src="URL">` element child to specify remote markdown
 
     <marked-element>
       <div class="markdown-html"></div>
@@ -168,25 +171,26 @@ as you would a regular DOM element:
       xhr: {
         type: Object,
         notify: true,
-        readOnly: true,
-        value: function() {
-          return new XMLHttpRequest();
-        }
+        readOnly: true
       }
     },
 
     ready: function() {
-      if (this.markdown) return;
+      if (this.markdown) {
+        return;
+      }
 
       // Use the Markdown from the first `<script>` descendant whose MIME type starts with
       // "text/markdown". Script elements beyond the first are ignored.
-      var markdownElement = Polymer.dom(this).querySelector('[type^="text/markdown"]');
-      if (!markdownElement) return;
+      var markdownElement = Polymer.dom(this).querySelector('[type="text/markdown"]');
+      if (!markdownElement) {
+        return;
+      }
+
+      this.markdown = this._unindent(markdownElement.textContent);
 
       if (markdownElement.src) {
         this._request(markdownElement.src);
-      } else {
-        this.markdown = this._unindent(markdownElement.textContent);
       }
     },
 
@@ -288,22 +292,43 @@ as you would a regular DOM element:
     },
 
     _request: function(url) {
+      this._setXhr(new XMLHttpRequest());
       var xhr = this.xhr;
 
-      if (xhr.readyState > 0) return null;
+      if (xhr.readyState > 0) {
+        return null;
+      }
 
-      xhr.addEventListener('loadend', function (e) {
+      function onError(e) {
+
+      }
+      xhr.addEventListener('error', this._handleError.bind(this));
+      xhr.addEventListener('loadend', function(e) {
         var status = this.xhr.status || 0;
         // Note: if we are using the file:// protocol, the status code will be 0
         // for all outcomes (successful or otherwise).
         if (status === 0 || (status >= 200 && status < 300)) {
           this.markdown = e.target.response;
+        } else {
+          this._handleError(e);
         }
       }.bind(this));
 
       xhr.open('GET', url);
       xhr.setRequestHeader('Accept', 'text/markdown');
       xhr.send();
+    },
+
+    /**
+     * Fired when an error is received while fetching remote markdown content.
+     *
+     * @event marked-request-error
+     */
+    _handleError(e) {
+      var evt = this.fire('marked-request-error', e, {cancelable: true});
+      if (!evt.defaultPrevented) {
+        this.markdown = 'Failed loading markdown source';
+      }
     }
   });
 
