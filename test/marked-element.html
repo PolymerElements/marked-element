@@ -111,7 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="RemoteContent">
     <template>
       <marked-element>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown" src="test.md">
           # Loading
 
@@ -124,7 +124,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="BadRemoteContent">
     <template>
       <marked-element>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown" src="test2.md"></script>
       </marked-element>
     </template>
