@@ -11,5 +11,3 @@ Example:
 ```
 
 _Nifty_ features.
-
-![Polymer](polymer.svg)
