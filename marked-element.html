@@ -299,9 +299,6 @@ as you would a regular DOM element:
         return null;
       }
 
-      function onError(e) {
-
-      }
       xhr.addEventListener('error', this._handleError.bind(this));
       xhr.addEventListener('loadend', function(e) {
         var status = this.xhr.status || 0;
