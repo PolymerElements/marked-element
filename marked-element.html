@@ -299,9 +299,6 @@ as you would a regular DOM element:
         return null;
       }
 
-      function onError(e) {
-
-      }
       xhr.addEventListener('error', this._handleError.bind(this));
       xhr.addEventListener('loadend', function(e) {
         var status = this.xhr.status || 0;
@@ -324,7 +321,7 @@ as you would a regular DOM element:
      *
      * @event marked-request-error
      */
-    _handleError(e) {
+    _handleError: function(e) {
       var evt = this.fire('marked-request-error', e, {cancelable: true});
       if (!evt.defaultPrevented) {
         this.markdown = 'Failed loading markdown source';
