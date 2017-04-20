@@ -324,7 +324,7 @@ as you would a regular DOM element:
      *
      * @event marked-request-error
      */
-    _handleError(e) {
+    _handleError: function(e) {
       var evt = this.fire('marked-request-error', e, {cancelable: true});
       if (!evt.defaultPrevented) {
         this.markdown = 'Failed loading markdown source';
