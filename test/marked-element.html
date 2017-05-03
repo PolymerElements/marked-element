@@ -423,9 +423,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }.bind(this));
         });
 
-        test('renders content while remote content is loading', function() {
+        test('renders content while remote content is loading', function(done) {
           proofElement.innerHTML = '<h1 id="loading">Loading</h1>\n<p>Please wait...</p>\n';
-          expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
+
+          if (outputElement.innerHTML) {
+            expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
+            done();
+          }
+
+          // this is async on FF and Edge
+          markedElement.addEventListener('marked-render-complete', function() {
+            expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
+            done();
+          })
         });
       });
     });
