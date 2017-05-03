@@ -64,9 +64,6 @@ The Markdown source can be specified several ways:
 </marked-element>
 ```
 
-Note that the `<script type="text/markdown">` approach is *static*. Changes to
-the script content will *not* update the rendered markdown!
-
 ### Styling
 
 If you are using a child with the `markdown-html` class, you can style it
