@@ -27,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="SmartyPants">
     <template>
       <marked-element smartypants>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
         # foo
         ...
@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="CamelCaseHTML">
     <template>
       <marked-element>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
 ```html
 <div camelCase></div>
@@ -52,7 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="BadHTML">
     <template>
       <marked-element>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
 ```html
 <p><div></p></div>
@@ -89,7 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="Renderer">
     <template>
       <marked-element>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
           [Link](http://url.com)
         </script>
@@ -100,7 +100,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="CustomCallbackFunction">
     <template>
       <marked-element>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
           Some content
         </script>
@@ -111,7 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="RemoteContent">
     <template>
       <marked-element>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown" src="test.md">
           # Loading
 
@@ -124,7 +124,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <test-fixture id="BadRemoteContent">
     <template>
       <marked-element>
-        <div id="output" class="markdown-html"></div>
+        <div id="output" slot="markdown-html"></div>
         <script type="text/markdown" src="test2.md"></script>
       </marked-element>
     </template>
@@ -132,16 +132,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="ChangingRemoteContent">
     <template>
-      <template is="dom-bind">
-        <marked-element id="markedElement">
-          <div id="output" class="markdown-html"></div>
-          <script type="text/markdown" src$="[[source]]">
-            # Loading
+      <dom-bind>
+        <template is="dom-bind">
+          <marked-element id="markedElement">
+            <div id="output" slot="markdown-html"></div>
+            <script type="text/markdown" src$="[[source]]">
+              # Loading
 
-            Please wait...
-          </script>
-        </marked-element>
-      </template>
+              Please wait...
+            </script>
+          </marked-element>
+        </template>
+      </dom-bind>
     </template>
   </test-fixture>
 
@@ -277,8 +279,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
 
         test('in code blocks', function() {
-          proofElement.innerHTML = '<div camelCase></div>';
+          Polymer.dom(proofElement).innerHTML = '<div camelCase></div>';
           expect(markedElement.$.content).to.equal(markedElement.outputElement);
+          Polymer.dom.flush();
           expect(isHidden(markedElement.$.content)).to.be.false;
 
           // If Markdown content were put into a `<template>` or directly into the DOM, it would be
@@ -301,6 +304,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('in code blocks', function() {
           proofElement.innerHTML = '<p><div></p></div>';
           expect(markedElement.$.content).to.equal(markedElement.outputElement);
+          Polymer.dom.flush();
           expect(isHidden(markedElement.$.content)).to.be.false;
 
           // If Markdown content were put into a `<template>` or directly into the DOM, it would be
@@ -400,6 +404,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('changing remote content with data binding', function() {
         setup(function() {
           markedHost = fixture('ChangingRemoteContent');
+
+          if (!Polymer.Element) {
+            markedHost = markedHost.children[0];
+          }
+
           markedElement = markedHost.$.markedElement;
           outputElement = markedHost.$.output;
           proofElement = document.createElement('div');
