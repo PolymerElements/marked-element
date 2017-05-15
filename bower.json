@@ -22,20 +22,20 @@
   },
   "dependencies": {
     "marked": "~0.3.6",
-    "polymer": "Polymer/polymer#^2.0.0-rc.1"
+    "polymer": "Polymer/polymer#1.9 - 2"
   },
   "devDependencies": {
-    "paper-styles": "PolymerElements/paper-styles#2.0-preview",
-    "iron-component-page": "PolymerElements/iron-component-page#2.0-preview",
+    "paper-styles": "PolymerElements/paper-styles#1 - 2",
+    "iron-component-page": "PolymerElements/iron-component-page#1 - 2",
     "test-fixture": "PolymerElements/test-fixture#^3.0.0-rc.1",
-    "web-component-tester": "Polymer/web-component-tester#^6.0.0-prerelease.6",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.5"
+    "web-component-tester": "^6.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
   },
   "variants": {
     "1.x": {
       "dependencies": {
         "marked": "~0.3.3",
-        "polymer": "Polymer/polymer#^1.1.0"
+        "polymer": "Polymer/polymer#^1.9"
       },
       "devDependencies": {
         "paper-styles": "PolymerElements/paper-styles#^1.0.4",
@@ -43,8 +43,14 @@
         "test-fixture": "polymerelements/test-fixture#^1.0.0",
         "web-component-tester": "^4.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+      },
+      "resolutions": {
+        "webcomponentsjs": "^0.7"
       }
     }
   },
-  "ignore": []
+  "ignore": [],
+  "resolutions": {
+    "webcomponentsjs": "^1.0.0"
+  }
 }
