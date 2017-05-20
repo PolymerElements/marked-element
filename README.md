@@ -59,7 +59,7 @@ The Markdown source can be specified several ways:
 
 ```html
 <marked-element>
-  <div class="markdown-html"></div>
+  <div slot="markdown-html"></div>
   <script type="text/markdown" src="../guidelines.md"></script>
 </marked-element>
 ```
@@ -71,7 +71,7 @@ Though, you can data bind to the `src` attribute to change the markdown.
 
 ```html
 <marked-element>
-  <div class="markdown-html"></div>
+  <div slot="markdown-html"></div>
   <script type="text/markdown" src$="[[source]]"></script>
 </marked-element>
 ...
