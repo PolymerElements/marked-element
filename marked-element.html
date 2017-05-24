@@ -200,21 +200,22 @@ as you would a regular DOM element:
         return;
       }
 
-      this.markdown = this._unindent(this._markdownElement.textContent);
+      if (this._markdownElement.textContent.trim() !== '') {
+        this.markdown = this._unindent(this._markdownElement.textContent);
+      }
 
       if (this._markdownElement.src) {
         this._request(this._markdownElement.src);
-      } else {
-        var observer = new MutationObserver(this._onScriptAttributeChanged
-            .bind(this));
-        observer.observe(this._markdownElement, { attributes: true })
       }
+
+      this._observer = new MutationObserver(this._onScriptAttributeChanged
+          .bind(this));
     },
 
     /**
      * Renders `markdown` to HTML when the element is attached.
      *
-     * This serves a dual purpose:
+     * This serves multiple purposes:
      *
      *  * Prevents unnecessary work (no need to render when not visible).
      *
@@ -222,14 +223,24 @@ as you would a regular DOM element:
      *    register listeners for the `syntax-highlight` event _before_ we render
      *    any markdown.
      *
+     *  * Registers the `MutationObserver` instance to receive notifications of
+     *    DOM mutations on the specified node.
+     *
      */
     attached: function() {
       this._attached = true;
       this._outputElement = this.outputElement;
       this.render();
+
+      if (this._observer && this._observer.observe) {
+        this._observer.observe(this._markdownElement, { attributes: true });
+      }
     },
 
     detached: function() {
+      if (this._observer && this._observer.disconnect) {
+        this._observer.disconnect();
+      }
       this._attached = false;
     },
 
