@@ -24,6 +24,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body>
 
+  <test-fixture id="NoContent">
+    <template>
+      <marked-element>
+        <div id="output" slot="markdown-html"></div>
+        <script type="text/markdown">
+
+        </script>
+      </marked-element>
+    </template>
+  </test-fixture>
+
   <test-fixture id="SmartyPants">
     <template>
       <marked-element smartypants>
@@ -125,7 +136,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
       <marked-element>
         <div id="output" slot="markdown-html"></div>
-        <script type="text/markdown" src="test2.md"></script>
+        <script type="text/markdown" src="test3.md"></script>
       </marked-element>
     </template>
   </test-fixture>
@@ -208,6 +219,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     suite('<marked-element> with .markdown-html child', function() {
+
+      suite('ignores no content', function() {
+        var markedElement;
+        var proofElement;
+        var outputElement;
+
+        setup(function() {
+          markedElement = fixture('NoContent');
+          proofElement = document.createElement('div');
+          outputElement = document.getElementById('output');
+        });
+
+        test('in code blocks', function() {
+          proofElement.innerHTML = '';
+          expect(outputElement).to.equal(markedElement.outputElement);
+          expect(isHidden(markedElement.$.content)).to.be.true;
+          expect(markedElement.markdown).to.equal(null);
+
+          expect(outputElement.innerHTML).to.equal(proofElement.innerHTML)
+        });
+      });
 
       suite('respects camelCased HTML', function() {
         var markedElement;
@@ -371,6 +403,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         test('renders content while remote content is loading', function() {
           proofElement.innerHTML = '<h1 id="loading">Loading</h1>\n<p>Please wait...</p>\n';
           expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
+        });
+
+        test('renders new remote content when src changes', function(done) {
+          markedElement.addEventListener('marked-loadend', function firstCheck() {
+            markedElement.removeEventListener('marked-loadend', firstCheck);
+            proofElement.innerHTML = '<h1 id="test-2">Test 2</h1>\n';
+            Polymer.dom(markedElement).querySelector('[type="text/markdown"]').src = 'test2.md';
+
+            markedElement.addEventListener('marked-loadend', function() {
+              expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
+              done();
+            });
+          });
         });
       });
 
