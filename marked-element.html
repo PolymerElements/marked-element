@@ -200,15 +200,17 @@ as you would a regular DOM element:
         return;
       }
 
-      this.markdown = this._unindent(this._markdownElement.textContent);
-
       if (this._markdownElement.src) {
         this._request(this._markdownElement.src);
-      } else {
-        var observer = new MutationObserver(this._onScriptAttributeChanged
-            .bind(this));
-        observer.observe(this._markdownElement, { attributes: true })
       }
+
+      if (this._markdownElement.textContent.trim() !== '') {
+        this.markdown = this._unindent(this._markdownElement.textContent);
+      }
+
+      var observer = new MutationObserver(this._onScriptAttributeChanged
+          .bind(this));
+      observer.observe(this._markdownElement, { attributes: true });
     },
 
     /**
@@ -270,7 +272,7 @@ as you would a regular DOM element:
      */
     render: function() {
       if (!this._attached) {
-        return
+        return;
       };
 
       if (!this.markdown) {
