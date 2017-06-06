@@ -2,7 +2,6 @@
   "name": "marked-element",
   "version": "2.1.0",
   "description": "Element wrapper for the marked library",
-  "private": true,
   "authors": [
     "The Polymer Project Authors (https://polymer.github.io/AUTHORS.txt)"
   ],
