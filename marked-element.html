@@ -285,6 +285,12 @@ as you would a regular DOM element:
       this.fire('marked-render-complete', {}, {composed: true});
     },
 
+    /**
+     * Fired once Markdown to HTML conversion has finished but before the DOM
+     * has been populated. Typically used for highlighting code blocks.
+     *
+     * @event syntax-highlight
+     */
     _highlight: function(code, lang) {
       var event = this.fire('syntax-highlight', {code: code, lang: lang}, {composed: true});
       return event.detail.code || code;
