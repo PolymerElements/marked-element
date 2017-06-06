@@ -95,19 +95,14 @@ as you would a regular DOM element:
       :host {
         display: block;
       }
-
-      [hidden] {
-        display: none !important;
-      }
     </style>
-    <slot name="markdown-html"></slot>
-    <div id="content" hidden></div>
+    <slot name="markdown-html">
+      <div id="content"></div>
+    </slot>
   </template>
-
 </dom-module>
 
 <script>
-
   'use strict';
 
   Polymer({
@@ -120,7 +115,6 @@ as you would a regular DOM element:
        * The markdown source that should be rendered by this element.
        */
       markdown: {
-        observer: 'render',
         type: String,
         value: null
       },
@@ -128,7 +122,6 @@ as you would a regular DOM element:
        * Enable GFM line breaks (regular newlines instead of two spaces for breaks)
        */
       breaks: {
-        observer: 'render',
         type: Boolean,
         value: false
       },
@@ -136,7 +129,6 @@ as you would a regular DOM element:
        * Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior.
        */
       pedantic: {
-        observer: 'render',
         type: Boolean,
         value: false
       },
@@ -146,7 +138,6 @@ as you would a regular DOM element:
        * It takes one argument: a marked renderer object, which is mutated by the function.
        */
       renderer: {
-        observer: 'render',
         type: Function,
         value: null
       },
@@ -154,7 +145,6 @@ as you would a regular DOM element:
        * Sanitize the output. Ignore any HTML that has been input.
        */
       sanitize: {
-        observer: 'render',
         type: Boolean,
         value: false
       },
@@ -162,7 +152,6 @@ as you would a regular DOM element:
        * Use "smart" typographic punctuation for things like quotes and dashes.
        */
       smartypants: {
-        observer: 'render',
         type: Boolean,
         value: false
       },
@@ -171,7 +160,6 @@ as you would a regular DOM element:
        * It must take two arguments: err and text and must return the resulting text.
        */
       callback: {
-        observer: 'render',
         type: Function,
         value: null
       },
@@ -187,6 +175,10 @@ as you would a regular DOM element:
         readOnly: true
       }
     },
+
+    observers: [
+      'render(markdown, breaks, pedantic, renderer, sanitize, smartypants, callback)'
+    ],
 
     ready: function() {
       if (this.markdown) {
@@ -244,13 +236,7 @@ as you would a regular DOM element:
 
     get outputElement () {
       var child = Polymer.dom(this).queryDistributedElements('[slot="markdown-html"]')[0];
-
-      if (child) {
-        return child;
-      }
-
-      this.$.content.removeAttribute('hidden');
-      return this.$.content;
+      return child || this.$.content;
     },
 
     /**
