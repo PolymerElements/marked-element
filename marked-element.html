@@ -110,7 +110,6 @@ as you would a regular DOM element:
     is: 'marked-element',
 
     properties: {
-
       /**
        * The markdown source that should be rendered by this element.
        */
@@ -157,7 +156,7 @@ as you would a regular DOM element:
       },
       /**
        * Callback function invoked by Marked after HTML has been rendered.
-       * It must take two arguments: err and text and must return the resulting text.
+       * It must take two arguments: err and content and must return the resulting content.
        */
       callback: {
         type: Function,
@@ -281,13 +280,19 @@ as you would a regular DOM element:
         smartypants: this.smartypants
       };
 
-      Polymer.dom(this._outputElement).innerHTML = marked(this.markdown, opts, this.callback);
-      this.fire('marked-render-complete', {}, {composed: true});
+      marked(this.markdown, opts, function(err, content) {
+        if (this.callback && typeof this.callback === 'function') {
+          content = this.callback(err, content);
+        }
+
+        Polymer.dom(this._outputElement).innerHTML = content;
+        this.fire('marked-render-complete', {}, {composed: true});
+      }.bind(this));
     },
 
-    _highlight: function(code, lang) {
+    _highlight: function(code, lang, callback) {
       var event = this.fire('syntax-highlight', {code: code, lang: lang}, {composed: true});
-      return event.detail.code || code;
+      callback(event.detail.err, event.detail.code || code);
     },
 
     _unindent: function(text) {
