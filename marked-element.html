@@ -285,6 +285,30 @@ as you would a regular DOM element:
       this.fire('marked-render-complete', {}, {composed: true});
     },
 
+     /**
+     * Fired when the content is being processed and before it is rendered.
+     * Provides an opportunity to implement syntax highlighting, e.g with highlightjs
+     *  An example handler can have this implementation : 
+     * <pre> <code>
+     * _highlightSyntax(e, detail) {
+     *    detail.code = hljs.highlightAuto(detail.code).value;
+     *    return e;
+     *  }
+     * </code> </pre>
+     * If using highlightjs, ensure the javascript library is loaded. You might also
+     * need to inline the highlightjs CSS style you intend to use, or load it from a file
+     * you can edit, so that you can prefix the rules to style content inside the marked-element's shadow DOM
+     * E.g this rule in the highlightjs defeult CSS style file : 
+     * <pre><code> .pl-c {
+     *   color: #969896;
+     * } </code></pre>
+     * becomes :
+     * <pre><code> [slot="markdown-html"] .pl-c {
+     *   color: #969896;
+     * } </code></pre>
+     *
+     * @event syntax-highlight
+     */
     _highlight: function(code, lang) {
       var event = this.fire('syntax-highlight', {code: code, lang: lang}, {composed: true});
       return event.detail.code || code;
