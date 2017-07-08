@@ -149,13 +149,13 @@ as you would a regular DOM element:
         value: false
       },
       /**
-       * If true, it will sanitize any markdown received by a request e.g. by
-       * fetching markdown via `src`. Note: this value overrides `sanitize` if
-       * a request is made.
+       * If false, it will override the default sanitization of any markdown
+       * received by a request e.g. by fetching markdown via `src`. Note: this
+       * value overrides `sanitize` if a request is made.
        */
-      sanitizeRemoteMarkdown: {
+      overrideRemoteSanitization: {
         type: Boolean,
-        value: true
+        value: false
       },
       /**
        * Use "smart" typographic punctuation for things like quotes and dashes.
@@ -332,7 +332,7 @@ as you would a regular DOM element:
         // Note: if we are using the file:// protocol, the status code will be 0
         // for all outcomes (successful or otherwise).
         if (status === 0 || (status >= 200 && status < 300)) {
-          this.sanitize = this.sanitizeRemoteMarkdown;
+          this.sanitize = !this.overrideRemoteSanitization;
           this.markdown = e.target.response;
         } else {
           this._handleError(e);
