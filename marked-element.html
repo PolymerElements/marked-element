@@ -150,9 +150,10 @@ as you would a regular DOM element:
       },
       /**
        * If true, overrides the default sanitization of any markdown received by
-       * a request and allows fetched unsanitized markdown e.g. by fetching
-       * markdown via `src`. Note: this value overrides `sanitize` if a request
-       * is made.
+       * a request and allows fetched unsanitized markdown
+       *
+       * e.g. fetching markdown via `src` that has HTML.
+       * Note: this value overrides `sanitize` if a request is made.
        */
       overrideRemoteSanitization: {
         type: Boolean,
