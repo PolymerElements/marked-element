@@ -158,6 +158,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="SanitizedRemoteContent">
+    <template>
+      <marked-element>
+        <div id="output" slot="markdown-html"></div>
+        <script type="text/markdown" src="remoteSanitization.md"></script>
+      </marked-element>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="UnsanitizedRemoteContent">
+    <template>
+      <marked-element sanitize-remote-markdown="false">
+        <div id="output" slot="markdown-html"></div>
+        <script type="text/markdown" src="remoteSanitization.md"></script>
+      </marked-element>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="ScriptUnsanitized">
+    <template>
+      <marked-element>
+        <div id="output" slot="markdown-html"></div>
+        <script type="text/markdown">
+```html
+<script>window.isRemoteUnsanitized=true;</script>
+```
+        </script>
+      </marked-element>
+    </template>
+  </test-fixture>
+
   <script>
     'use strict';
 
@@ -490,6 +521,53 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
             done();
           })
+        });
+      });
+
+      suite('sanitizing remote content', function() {
+        suite('sanitized', function() {
+          setup(function() {
+            markedElement = fixture('SanitizedRemoteContent');
+          });
+
+          test('sanitizes remote content', function() {
+            markedElement.addEventListener('marked-loadend', function() {
+              assert.isTrue(markedElement.sanitize);
+              assert.isTrue(markedElement.sanitizeRemoteContent);
+              assert.isNotOk(window.isRemoteUnsanitized);
+              done();
+            });
+          });
+        });
+
+        suite('unsanitized', function() {
+          setup(function() {
+            markedElement = fixture('UnsanitizedRemoteContent');
+          });
+
+          test('does not sanitize remote content', function() {
+            markedElement.addEventListener('marked-loadend', function() {
+              assert.isTrue(markedElement.sanitize);
+              assert.isTrue(markedElement.sanitizeRemoteContent);
+              assert.isTrue(window.isRemoteUnsanitized);
+              done();
+            });
+          });
+        });
+
+        suite('local content is not automatically sanitized', function() {
+          setup(function() {
+            markedElement = fixture('ScriptUnsanitized');
+          });
+
+          test('local content is not sanitized by default', function() {
+            markedElement.addEventListener('marked-loadend', function() {
+              assert.isNotTrue(markedElement.sanitize);
+              assert.isTrue(markedElement.sanitizeRemoteContent);
+              assert.isTrue(window.isRemoteUnsanitized);
+              done();
+            });
+          });
         });
       });
     });
