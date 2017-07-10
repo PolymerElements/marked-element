@@ -169,7 +169,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="UnsanitizedRemoteContent">
     <template>
-      <marked-element override-remote-sanitization>
+      <marked-element disable-remote-sanitization>
         <div id="output" slot="markdown-html"></div>
         <script type="text/markdown" src="remoteSanitization.md"></script>
       </marked-element>
@@ -524,7 +524,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             markedElement.addEventListener('marked-loadend', function() {
               assert.isTrue(markedElement.sanitize);
-              assert.isNotTrue(markedElement.overrideRemoteSanitization);
+              assert.isNotTrue(markedElement.disableRemoteSanitization);
               expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
               done();
             });
@@ -544,7 +544,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             markedElement.addEventListener('marked-loadend', function() {
               assert.isNotTrue(markedElement.sanitize);
-              assert.isTrue(markedElement.overrideRemoteSanitization);
+              assert.isTrue(markedElement.disableRemoteSanitization);
               expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
               done();
             });
