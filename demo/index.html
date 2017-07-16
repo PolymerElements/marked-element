@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="import" href="../../paper-styles/demo-pages.html">
   <link rel="import" href="../marked-element.html">
+  <link rel="import" href="./marked-highlight.html">
 
 </head>
 <body unresolved>
@@ -37,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 30px;
       }
 
-      marked-element {
+      marked-element, marked-highlight{
         display: block;
         background-color: var(--google-grey-100);
         padding: 10px 30px;
@@ -91,6 +92,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           Loading markdown...
         </script>
       </marked-element>
+    </section>
+
+    <section>
+      <h3>Syntax highlight</h3>
+      <marked-highlight></marked-highlight>
     </section>
 
   </div>
