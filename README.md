@@ -95,3 +95,34 @@ as you would a regular DOM element:
   padding-left: 24px;
 }
 ```
+
+### Syntax Highlighting
+Provides an opportunity to implement syntax highlighting, [e.g with highlightjs](https://highlightjs.org/).
+An example handler can have this implementation : 
+```
+<marked-element id="syntaxHighlight" on-syntax-highlight="_highlightSyntax">
+  ...
+</marked-element>
+```
+
+```
+_highlightSyntax(e, detail) {
+   detail.code = hljs.highlightAuto(detail.code).value;
+   return e;
+ }
+```
+If using highlightjs, ensure the javascript library is loaded. You might also
+need to inline the highlightjs CSS style you intend to use, or load it from a file
+you can edit, so that you can prefix the rules to style content inside the marked-element's shadow DOM
+E.g this rule in the highlightjs defeult CSS style file : 
+```
+.pl-c {
+  color: #969896;
+} 
+```
+becomes :
+``` 
+[slot="markdown-html"] .pl-c {
+  color: #969896;
+} 
+```
