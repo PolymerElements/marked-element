@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer-element.html">
 
-<!-- styles for markedowm content -->
+<!-- highlightjs default theme stylesheet -->
+<!-- modified to have the slot prefix to apply rules to marked-element's shadow DOM -->
 <dom-module id="md-styles">
   <template>
     <style>
@@ -10,7 +11,7 @@
         src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
       }
 
-      :host marked-element [slot="markdown-html"] {
+      marked-element [slot="markdown-html"] {
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
         line-height: 1.5;
@@ -21,194 +22,194 @@
         word-wrap: break-word;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-c {
+      marked-element [slot="markdown-html"] .pl-c {
         color: #969896;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-c1,
-      :host marked-element [slot="markdown-html"] .pl-s .pl-v {
+      marked-element [slot="markdown-html"] .pl-c1,
+      marked-element [slot="markdown-html"] .pl-s .pl-v {
         color: #0086b3;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-e,
-      :host marked-element [slot="markdown-html"] .pl-en {
+      marked-element [slot="markdown-html"] .pl-e,
+      marked-element [slot="markdown-html"] .pl-en {
         color: #795da3;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-smi,
-      :host marked-element [slot="markdown-html"] .pl-s .pl-s1 {
+      marked-element [slot="markdown-html"] .pl-smi,
+      marked-element [slot="markdown-html"] .pl-s .pl-s1 {
         color: #333;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-ent {
+      marked-element [slot="markdown-html"] .pl-ent {
         color: #63a35c;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-k {
+      marked-element [slot="markdown-html"] .pl-k {
         color: #a71d5d;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-s,
-      :host marked-element [slot="markdown-html"] .pl-pds,
-      :host marked-element [slot="markdown-html"] .pl-s .pl-pse .pl-s1,
-      :host marked-element [slot="markdown-html"] .pl-sr,
-      :host marked-element [slot="markdown-html"] .pl-sr .pl-cce,
-      :host marked-element [slot="markdown-html"] .pl-sr .pl-sre,
-      :host marked-element [slot="markdown-html"] .pl-sr .pl-sra {
+      marked-element [slot="markdown-html"] .pl-s,
+      marked-element [slot="markdown-html"] .pl-pds,
+      marked-element [slot="markdown-html"] .pl-s .pl-pse .pl-s1,
+      marked-element [slot="markdown-html"] .pl-sr,
+      marked-element [slot="markdown-html"] .pl-sr .pl-cce,
+      marked-element [slot="markdown-html"] .pl-sr .pl-sre,
+      marked-element [slot="markdown-html"] .pl-sr .pl-sra {
         color: #183691;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-v {
+      marked-element [slot="markdown-html"] .pl-v {
         color: #ed6a43;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-id {
+      marked-element [slot="markdown-html"] .pl-id {
         color: #b52a1d;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-ii {
+      marked-element [slot="markdown-html"] .pl-ii {
         color: #f8f8f8;
         background-color: #b52a1d;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-sr .pl-cce {
+      marked-element [slot="markdown-html"] .pl-sr .pl-cce {
         font-weight: bold;
         color: #63a35c;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-ml {
+      marked-element [slot="markdown-html"] .pl-ml {
         color: #693a17;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-mh,
-      :host marked-element [slot="markdown-html"] .pl-mh .pl-en,
-      :host marked-element [slot="markdown-html"] .pl-ms {
+      marked-element [slot="markdown-html"] .pl-mh,
+      marked-element [slot="markdown-html"] .pl-mh .pl-en,
+      marked-element [slot="markdown-html"] .pl-ms {
         font-weight: bold;
         color: #1d3e81;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-mq {
+      marked-element [slot="markdown-html"] .pl-mq {
         color: #008080;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-mi {
+      marked-element [slot="markdown-html"] .pl-mi {
         font-style: italic;
         color: #333;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-mb {
+      marked-element [slot="markdown-html"] .pl-mb {
         font-weight: bold;
         color: #333;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-md {
+      marked-element [slot="markdown-html"] .pl-md {
         color: #bd2c00;
         background-color: #ffecec;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-mi1 {
+      marked-element [slot="markdown-html"] .pl-mi1 {
         color: #55a532;
         background-color: #eaffea;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-mdr {
+      marked-element [slot="markdown-html"] .pl-mdr {
         font-weight: bold;
         color: #795da3;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-mo {
+      marked-element [slot="markdown-html"] .pl-mo {
         color: #1d3e81;
       }
 
-      :host marked-element [slot="markdown-html"] .octicon {
+      marked-element [slot="markdown-html"] .octicon {
         display: inline-block;
         vertical-align: text-top;
         fill: currentColor;
       }
 
-      :host marked-element [slot="markdown-html"] a {
+      marked-element [slot="markdown-html"] a {
         background-color: transparent;
         -webkit-text-decoration-skip: objects;
       }
 
-      :host marked-element [slot="markdown-html"] a:active,
-      :host marked-element [slot="markdown-html"] a:hover {
+      marked-element [slot="markdown-html"] a:active,
+      marked-element [slot="markdown-html"] a:hover {
         outline-width: 0;
       }
 
-      :host marked-element [slot="markdown-html"] strong {
+      marked-element [slot="markdown-html"] strong {
         font-weight: inherit;
       }
 
-      :host marked-element [slot="markdown-html"] strong {
+      marked-element [slot="markdown-html"] strong {
         font-weight: bolder;
       }
 
-      :host marked-element [slot="markdown-html"] h1 {
+      marked-element [slot="markdown-html"] h1 {
         font-size: 2em;
         margin: 0.67em 0;
       }
 
-      :host marked-element [slot="markdown-html"] img {
+      marked-element [slot="markdown-html"] img {
         border-style: none;
       }
 
-      :host marked-element [slot="markdown-html"] svg:not(:root) {
+      marked-element [slot="markdown-html"] svg:not(:root) {
         overflow: hidden;
       }
 
-      :host marked-element [slot="markdown-html"] code,
-      :host marked-element [slot="markdown-html"] kbd,
-      :host marked-element [slot="markdown-html"] pre {
+      marked-element [slot="markdown-html"] code,
+      marked-element [slot="markdown-html"] kbd,
+      marked-element [slot="markdown-html"] pre {
         font-family: monospace, monospace;
         font-size: 1em;
       }
 
-      :host marked-element [slot="markdown-html"] hr {
+      marked-element [slot="markdown-html"] hr {
         box-sizing: content-box;
         height: 0;
         overflow: visible;
       }
 
-      :host marked-element [slot="markdown-html"] input {
+      marked-element [slot="markdown-html"] input {
         font: inherit;
         margin: 0;
       }
 
-      :host marked-element [slot="markdown-html"] input {
+      marked-element [slot="markdown-html"] input {
         overflow: visible;
       }
 
-      :host marked-element [slot="markdown-html"] [type="checkbox"] {
+      marked-element [slot="markdown-html"] [type="checkbox"] {
         box-sizing: border-box;
         padding: 0;
       }
 
-      :host marked-element [slot="markdown-html"] * {
+      marked-element [slot="markdown-html"] * {
         box-sizing: border-box;
       }
 
-      :host marked-element [slot="markdown-html"] input {
+      marked-element [slot="markdown-html"] input {
         font-family: inherit;
         font-size: inherit;
         line-height: inherit;
       }
 
-      :host marked-element [slot="markdown-html"] a {
+      marked-element [slot="markdown-html"] a {
         color: #4078c0;
         text-decoration: none;
       }
 
-      :host marked-element [slot="markdown-html"] a:hover,
-      :host marked-element [slot="markdown-html"] a:active {
+      marked-element [slot="markdown-html"] a:hover,
+      marked-element [slot="markdown-html"] a:active {
         text-decoration: underline;
       }
 
-      :host marked-element [slot="markdown-html"] strong {
+      marked-element [slot="markdown-html"] strong {
         font-weight: 600;
       }
 
-      :host marked-element [slot="markdown-html"] hr {
+      marked-element [slot="markdown-html"] hr {
         height: 0;
         margin: 15px 0;
         overflow: hidden;
@@ -217,115 +218,115 @@
         border-bottom: 1px solid #ddd;
       }
 
-      :host marked-element [slot="markdown-html"] hr::before {
+      marked-element [slot="markdown-html"] hr::before {
         display: table;
         content: "";
       }
 
-      :host marked-element [slot="markdown-html"] hr::after {
+      marked-element [slot="markdown-html"] hr::after {
         display: table;
         clear: both;
         content: "";
       }
 
-      :host marked-element [slot="markdown-html"] table {
+      marked-element [slot="markdown-html"] table {
         border-spacing: 0;
         border-collapse: collapse;
       }
 
-      :host marked-element [slot="markdown-html"] td,
-      :host marked-element [slot="markdown-html"] th {
+      marked-element [slot="markdown-html"] td,
+      marked-element [slot="markdown-html"] th {
         padding: 0;
       }
 
-      :host marked-element [slot="markdown-html"] h1,
-      :host marked-element [slot="markdown-html"] h2,
-      :host marked-element [slot="markdown-html"] h3,
-      :host marked-element [slot="markdown-html"] h4,
-      :host marked-element [slot="markdown-html"] h5,
-      :host marked-element [slot="markdown-html"] h6 {
+      marked-element [slot="markdown-html"] h1,
+      marked-element [slot="markdown-html"] h2,
+      marked-element [slot="markdown-html"] h3,
+      marked-element [slot="markdown-html"] h4,
+      marked-element [slot="markdown-html"] h5,
+      marked-element [slot="markdown-html"] h6 {
         margin-top: 0;
         margin-bottom: 0;
       }
 
-      :host marked-element [slot="markdown-html"] h1 {
+      marked-element [slot="markdown-html"] h1 {
         font-size: 32px;
         font-weight: 600;
       }
 
-      :host marked-element [slot="markdown-html"] h2 {
+      marked-element [slot="markdown-html"] h2 {
         font-size: 24px;
         font-weight: 600;
       }
 
-      :host marked-element [slot="markdown-html"] h3 {
+      marked-element [slot="markdown-html"] h3 {
         font-size: 20px;
         font-weight: 600;
       }
 
-      :host marked-element [slot="markdown-html"] h4 {
+      marked-element [slot="markdown-html"] h4 {
         font-size: 16px;
         font-weight: 600;
       }
 
-      :host marked-element [slot="markdown-html"] h5 {
+      marked-element [slot="markdown-html"] h5 {
         font-size: 14px;
         font-weight: 600;
       }
 
-      :host marked-element [slot="markdown-html"] h6 {
+      marked-element [slot="markdown-html"] h6 {
         font-size: 12px;
         font-weight: 600;
       }
 
-      :host marked-element [slot="markdown-html"] p {
+      marked-element [slot="markdown-html"] p {
         margin-top: 0;
         margin-bottom: 10px;
       }
 
-      :host marked-element [slot="markdown-html"] blockquote {
+      marked-element [slot="markdown-html"] blockquote {
         margin: 0;
       }
 
-      :host marked-element [slot="markdown-html"] ul,
-      :host marked-element [slot="markdown-html"] ol {
+      marked-element [slot="markdown-html"] ul,
+      marked-element [slot="markdown-html"] ol {
         padding-left: 0;
         margin-top: 0;
         margin-bottom: 0;
       }
 
-      :host marked-element [slot="markdown-html"] ol ol,
-      :host marked-element [slot="markdown-html"] ul ol {
+      marked-element [slot="markdown-html"] ol ol,
+      marked-element [slot="markdown-html"] ul ol {
         list-style-type: lower-roman;
       }
 
-      :host marked-element [slot="markdown-html"] ul ul ol,
-      :host marked-element [slot="markdown-html"] ul ol ol,
-      :host marked-element [slot="markdown-html"] ol ul ol,
-      :host marked-element [slot="markdown-html"] ol ol ol {
+      marked-element [slot="markdown-html"] ul ul ol,
+      marked-element [slot="markdown-html"] ul ol ol,
+      marked-element [slot="markdown-html"] ol ul ol,
+      marked-element [slot="markdown-html"] ol ol ol {
         list-style-type: lower-alpha;
       }
 
-      :host marked-element [slot="markdown-html"] dd {
+      marked-element [slot="markdown-html"] dd {
         margin-left: 0;
       }
 
-      :host marked-element [slot="markdown-html"] code {
+      marked-element [slot="markdown-html"] code {
         font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
         font-size: 12px;
       }
 
-      :host marked-element [slot="markdown-html"] pre {
+      marked-element [slot="markdown-html"] pre {
         margin-top: 0;
         margin-bottom: 0;
         font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
       }
 
-      :host marked-element [slot="markdown-html"] .octicon {
+      marked-element [slot="markdown-html"] .octicon {
         vertical-align: text-bottom;
       }
 
-      :host marked-element [slot="markdown-html"] input {
+      marked-element [slot="markdown-html"] input {
         -webkit-font-feature-settings: "liga" 0;
         font-feature-settings: "liga" 0;
       }
@@ -349,34 +350,34 @@
         margin-bottom: 0 !important;
       }
 
-      :host marked-element [slot="markdown-html"] a:not([href]) {
+      marked-element [slot="markdown-html"] a:not([href]) {
         color: inherit;
         text-decoration: none;
       }
 
-      :host marked-element [slot="markdown-html"] .anchor {
+      marked-element [slot="markdown-html"] .anchor {
         float: left;
         padding-right: 4px;
         margin-left: -20px;
         line-height: 1;
       }
 
-      :host marked-element [slot="markdown-html"] .anchor:focus {
+      marked-element [slot="markdown-html"] .anchor:focus {
         outline: none;
       }
 
-      :host marked-element [slot="markdown-html"] p,
-      :host marked-element [slot="markdown-html"] blockquote,
-      :host marked-element [slot="markdown-html"] ul,
-      :host marked-element [slot="markdown-html"] ol,
-      :host marked-element [slot="markdown-html"] dl,
-      :host marked-element [slot="markdown-html"] table,
-      :host marked-element [slot="markdown-html"] pre {
+      marked-element [slot="markdown-html"] p,
+      marked-element [slot="markdown-html"] blockquote,
+      marked-element [slot="markdown-html"] ul,
+      marked-element [slot="markdown-html"] ol,
+      marked-element [slot="markdown-html"] dl,
+      marked-element [slot="markdown-html"] table,
+      marked-element [slot="markdown-html"] pre {
         margin-top: 0;
         margin-bottom: 16px;
       }
 
-      :host marked-element [slot="markdown-html"] hr {
+      marked-element [slot="markdown-html"] hr {
         height: 0.25em;
         padding: 0;
         margin: 24px 0;
@@ -384,21 +385,21 @@
         border: 0;
       }
 
-      :host marked-element [slot="markdown-html"] blockquote {
+      marked-element [slot="markdown-html"] blockquote {
         padding: 0 1em;
         color: #777;
         border-left: 0.25em solid #ddd;
       }
 
-      :host marked-element [slot="markdown-html"] blockquote>:first-child {
+      marked-element [slot="markdown-html"] blockquote>:first-child {
         margin-top: 0;
       }
 
-      :host marked-element [slot="markdown-html"] blockquote>:last-child {
+      marked-element [slot="markdown-html"] blockquote>:last-child {
         margin-bottom: 0;
       }
 
-      :host marked-element [slot="markdown-html"] kbd {
+      marked-element [slot="markdown-html"] kbd {
         display: inline-block;
         padding: 3px 5px;
         font-size: 11px;
@@ -412,102 +413,102 @@
         box-shadow: inset 0 -1px 0 #bbb;
       }
 
-      :host marked-element [slot="markdown-html"] h1,
-      :host marked-element [slot="markdown-html"] h2,
-      :host marked-element [slot="markdown-html"] h3,
-      :host marked-element [slot="markdown-html"] h4,
-      :host marked-element [slot="markdown-html"] h5,
-      :host marked-element [slot="markdown-html"] h6 {
+      marked-element [slot="markdown-html"] h1,
+      marked-element [slot="markdown-html"] h2,
+      marked-element [slot="markdown-html"] h3,
+      marked-element [slot="markdown-html"] h4,
+      marked-element [slot="markdown-html"] h5,
+      marked-element [slot="markdown-html"] h6 {
         margin-top: 24px;
         margin-bottom: 16px;
         font-weight: 600;
         line-height: 1.25;
       }
 
-      :host marked-element [slot="markdown-html"] h1 .octicon-link,
-      :host marked-element [slot="markdown-html"] h2 .octicon-link,
-      :host marked-element [slot="markdown-html"] h3 .octicon-link,
-      :host marked-element [slot="markdown-html"] h4 .octicon-link,
-      :host marked-element [slot="markdown-html"] h5 .octicon-link,
-      :host marked-element [slot="markdown-html"] h6 .octicon-link {
+      marked-element [slot="markdown-html"] h1 .octicon-link,
+      marked-element [slot="markdown-html"] h2 .octicon-link,
+      marked-element [slot="markdown-html"] h3 .octicon-link,
+      marked-element [slot="markdown-html"] h4 .octicon-link,
+      marked-element [slot="markdown-html"] h5 .octicon-link,
+      marked-element [slot="markdown-html"] h6 .octicon-link {
         color: #000;
         vertical-align: middle;
         visibility: hidden;
       }
 
-      :host marked-element [slot="markdown-html"] h1:hover .anchor,
-      :host marked-element [slot="markdown-html"] h2:hover .anchor,
-      :host marked-element [slot="markdown-html"] h3:hover .anchor,
-      :host marked-element [slot="markdown-html"] h4:hover .anchor,
-      :host marked-element [slot="markdown-html"] h5:hover .anchor,
-      :host marked-element [slot="markdown-html"] h6:hover .anchor {
+      marked-element [slot="markdown-html"] h1:hover .anchor,
+      marked-element [slot="markdown-html"] h2:hover .anchor,
+      marked-element [slot="markdown-html"] h3:hover .anchor,
+      marked-element [slot="markdown-html"] h4:hover .anchor,
+      marked-element [slot="markdown-html"] h5:hover .anchor,
+      marked-element [slot="markdown-html"] h6:hover .anchor {
         text-decoration: none;
       }
 
-      :host marked-element [slot="markdown-html"] h1:hover .anchor .octicon-link,
-      :host marked-element [slot="markdown-html"] h2:hover .anchor .octicon-link,
-      :host marked-element [slot="markdown-html"] h3:hover .anchor .octicon-link,
-      :host marked-element [slot="markdown-html"] h4:hover .anchor .octicon-link,
-      :host marked-element [slot="markdown-html"] h5:hover .anchor .octicon-link,
-      :host marked-element [slot="markdown-html"] h6:hover .anchor .octicon-link {
+      marked-element [slot="markdown-html"] h1:hover .anchor .octicon-link,
+      marked-element [slot="markdown-html"] h2:hover .anchor .octicon-link,
+      marked-element [slot="markdown-html"] h3:hover .anchor .octicon-link,
+      marked-element [slot="markdown-html"] h4:hover .anchor .octicon-link,
+      marked-element [slot="markdown-html"] h5:hover .anchor .octicon-link,
+      marked-element [slot="markdown-html"] h6:hover .anchor .octicon-link {
         visibility: visible;
       }
 
-      :host marked-element [slot="markdown-html"] h1 {
+      marked-element [slot="markdown-html"] h1 {
         padding-bottom: 0.3em;
         font-size: 2em;
         border-bottom: 1px solid #eee;
       }
 
-      :host marked-element [slot="markdown-html"] h2 {
+      marked-element [slot="markdown-html"] h2 {
         padding-bottom: 0.3em;
         font-size: 1.5em;
         border-bottom: 1px solid #eee;
       }
 
-      :host marked-element [slot="markdown-html"] h3 {
+      marked-element [slot="markdown-html"] h3 {
         font-size: 1.25em;
       }
 
-      :host marked-element [slot="markdown-html"] h4 {
+      marked-element [slot="markdown-html"] h4 {
         font-size: 1em;
       }
 
-      :host marked-element [slot="markdown-html"] h5 {
+      marked-element [slot="markdown-html"] h5 {
         font-size: 0.875em;
       }
 
-      :host marked-element [slot="markdown-html"] h6 {
+      marked-element [slot="markdown-html"] h6 {
         font-size: 0.85em;
         color: #777;
       }
 
-      :host marked-element [slot="markdown-html"] ul,
-      :host marked-element [slot="markdown-html"] ol {
+      marked-element [slot="markdown-html"] ul,
+      marked-element [slot="markdown-html"] ol {
         padding-left: 2em;
       }
 
-      :host marked-element [slot="markdown-html"] ul ul,
-      :host marked-element [slot="markdown-html"] ul ol,
-      :host marked-element [slot="markdown-html"] ol ol,
-      :host marked-element [slot="markdown-html"] ol ul {
+      marked-element [slot="markdown-html"] ul ul,
+      marked-element [slot="markdown-html"] ul ol,
+      marked-element [slot="markdown-html"] ol ol,
+      marked-element [slot="markdown-html"] ol ul {
         margin-top: 0;
         margin-bottom: 0;
       }
 
-      :host marked-element [slot="markdown-html"] li>p {
+      marked-element [slot="markdown-html"] li>p {
         margin-top: 16px;
       }
 
-      :host marked-element [slot="markdown-html"] li+li {
+      marked-element [slot="markdown-html"] li+li {
         margin-top: 0.25em;
       }
 
-      :host marked-element [slot="markdown-html"] dl {
+      marked-element [slot="markdown-html"] dl {
         padding: 0;
       }
 
-      :host marked-element [slot="markdown-html"] dl dt {
+      marked-element [slot="markdown-html"] dl dt {
         padding: 0;
         margin-top: 16px;
         font-size: 1em;
@@ -515,43 +516,43 @@
         font-weight: bold;
       }
 
-      :host marked-element [slot="markdown-html"] dl dd {
+      marked-element [slot="markdown-html"] dl dd {
         padding: 0 16px;
         margin-bottom: 16px;
       }
 
-      :host marked-element [slot="markdown-html"] table {
+      marked-element [slot="markdown-html"] table {
         display: block;
         width: 100%;
         overflow: auto;
       }
 
-      :host marked-element [slot="markdown-html"] table th {
+      marked-element [slot="markdown-html"] table th {
         font-weight: bold;
       }
 
-      :host marked-element [slot="markdown-html"] table th,
-      :host marked-element [slot="markdown-html"] table td {
+      marked-element [slot="markdown-html"] table th,
+      marked-element [slot="markdown-html"] table td {
         padding: 6px 13px;
         border: 1px solid #ddd;
       }
 
-      :host marked-element [slot="markdown-html"] table tr {
+      marked-element [slot="markdown-html"] table tr {
         background-color: #fff;
         border-top: 1px solid #ccc;
       }
 
-      :host marked-element [slot="markdown-html"] table tr:nth-child(2n) {
+      marked-element [slot="markdown-html"] table tr:nth-child(2n) {
         background-color: #f8f8f8;
       }
 
-      :host marked-element [slot="markdown-html"] img {
+      marked-element [slot="markdown-html"] img {
         max-width: 100%;
         box-sizing: content-box;
         background-color: #fff;
       }
 
-      :host marked-element [slot="markdown-html"] code {
+      marked-element [slot="markdown-html"] code {
         padding: 0;
         padding-top: 0.2em;
         padding-bottom: 0.2em;
@@ -561,17 +562,17 @@
         border-radius: 3px;
       }
 
-      :host marked-element [slot="markdown-html"] code::before,
-      :host marked-element [slot="markdown-html"] code::after {
+      marked-element [slot="markdown-html"] code::before,
+      marked-element [slot="markdown-html"] code::after {
         letter-spacing: -0.2em;
         content: "\00a0";
       }
 
-      :host marked-element [slot="markdown-html"] pre {
+      marked-element [slot="markdown-html"] pre {
         word-wrap: normal;
       }
 
-      :host marked-element [slot="markdown-html"] pre>code {
+      marked-element [slot="markdown-html"] pre>code {
         padding: 0;
         margin: 0;
         font-size: 100%;
@@ -581,17 +582,17 @@
         border: 0;
       }
 
-      :host marked-element [slot="markdown-html"] .highlight {
+      marked-element [slot="markdown-html"] .highlight {
         margin-bottom: 16px;
       }
 
-      :host marked-element [slot="markdown-html"] .highlight pre {
+      marked-element [slot="markdown-html"] .highlight pre {
         margin-bottom: 0;
         word-break: normal;
       }
 
-      :host marked-element [slot="markdown-html"] .highlight pre,
-      :host marked-element [slot="markdown-html"] pre {
+      marked-element [slot="markdown-html"] .highlight pre,
+      marked-element [slot="markdown-html"] pre {
         padding: 16px;
         overflow: auto;
         font-size: 85%;
@@ -600,7 +601,7 @@
         border-radius: 3px;
       }
 
-      :host marked-element [slot="markdown-html"] pre code {
+      marked-element [slot="markdown-html"] pre code {
         display: inline;
         max-width: auto;
         padding: 0;
@@ -612,45 +613,45 @@
         border: 0;
       }
 
-      :host marked-element [slot="markdown-html"] pre code::before,
-      :host marked-element [slot="markdown-html"] pre code::after {
+      marked-element [slot="markdown-html"] pre code::before,
+      marked-element [slot="markdown-html"] pre code::after {
         content: normal;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-0 {
+      marked-element [slot="markdown-html"] .pl-0 {
         padding-left: 0 !important;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-1 {
+      marked-element [slot="markdown-html"] .pl-1 {
         padding-left: 3px !important;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-2 {
+      marked-element [slot="markdown-html"] .pl-2 {
         padding-left: 6px !important;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-3 {
+      marked-element [slot="markdown-html"] .pl-3 {
         padding-left: 12px !important;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-4 {
+      marked-element [slot="markdown-html"] .pl-4 {
         padding-left: 24px !important;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-5 {
+      marked-element [slot="markdown-html"] .pl-5 {
         padding-left: 36px !important;
       }
 
-      :host marked-element [slot="markdown-html"] .pl-6 {
+      marked-element [slot="markdown-html"] .pl-6 {
         padding-left: 48px !important;
       }
 
-      :host marked-element [slot="markdown-html"] .full-commit .btn-outline:not(:disabled):hover {
+      marked-element [slot="markdown-html"] .full-commit .btn-outline:not(:disabled):hover {
         color: #4078c0;
         border: 1px solid #4078c0;
       }
 
-      :host marked-element [slot="markdown-html"] kbd {
+      marked-element [slot="markdown-html"] kbd {
         display: inline-block;
         padding: 3px 5px;
         font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
@@ -664,31 +665,31 @@
         box-shadow: inset 0 -1px 0 #bbb;
       }
 
-      :host marked-element [slot="markdown-html"] :checked+.radio-label {
+      marked-element [slot="markdown-html"] :checked+.radio-label {
         position: relative;
         z-index: 1;
         border-color: #4078c0;
       }
 
-      :host marked-element [slot="markdown-html"] .task-list-item {
+      marked-element [slot="markdown-html"] .task-list-item {
         list-style-type: none;
       }
 
-      :host marked-element [slot="markdown-html"] .task-list-item+.task-list-item {
+      marked-element [slot="markdown-html"] .task-list-item+.task-list-item {
         margin-top: 3px;
       }
 
-      :host marked-element [slot="markdown-html"] .task-list-item input {
+      marked-element [slot="markdown-html"] .task-list-item input {
         margin: 0 0.2em 0.25em -1.6em;
         vertical-align: middle;
       }
 
-      :host marked-element [slot="markdown-html"] hr {
+      marked-element [slot="markdown-html"] hr {
         border-bottom-color: #eee;
       }
 
       /* HIGHLIGHT CODE SYNTAX */
-      :host marked-element [slot="markdown-html"] pre code .hljs {
+      marked-element [slot="markdown-html"] pre code .hljs {
         display: block;
         overflow-x: auto;
         padding: 0.5em;
@@ -696,89 +697,89 @@
         background: #f8f8f8;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-comment,
-      :host marked-element [slot="markdown-html"] pre code .hljs-quote {
+      marked-element [slot="markdown-html"] pre code .hljs-comment,
+      marked-element [slot="markdown-html"] pre code .hljs-quote {
         color: #998;
         font-style: italic;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-keyword,
-      :host marked-element [slot="markdown-html"] pre code .hljs-selector-tag,
-      :host marked-element [slot="markdown-html"] pre code .hljs-subst {
+      marked-element [slot="markdown-html"] pre code .hljs-keyword,
+      marked-element [slot="markdown-html"] pre code .hljs-selector-tag,
+      marked-element [slot="markdown-html"] pre code .hljs-subst {
         color: #333;
         font-weight: bold;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-number,
-      :host marked-element [slot="markdown-html"] pre code .hljs-literal,
-      :host marked-element [slot="markdown-html"] pre code .hljs-variable,
-      :host marked-element [slot="markdown-html"] pre code .hljs-template-variable,
-      :host marked-element [slot="markdown-html"] pre code .hljs-tag .hljs-attr {
+      marked-element [slot="markdown-html"] pre code .hljs-number,
+      marked-element [slot="markdown-html"] pre code .hljs-literal,
+      marked-element [slot="markdown-html"] pre code .hljs-variable,
+      marked-element [slot="markdown-html"] pre code .hljs-template-variable,
+      marked-element [slot="markdown-html"] pre code .hljs-tag .hljs-attr {
         color: #008080;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-string,
-      :host marked-element [slot="markdown-html"] pre code .hljs-doctag {
+      marked-element [slot="markdown-html"] pre code .hljs-string,
+      marked-element [slot="markdown-html"] pre code .hljs-doctag {
         color: #d14;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-title,
-      :host marked-element [slot="markdown-html"] pre code .hljs-section,
-      :host marked-element [slot="markdown-html"] pre code .hljs-selector-id {
+      marked-element [slot="markdown-html"] pre code .hljs-title,
+      marked-element [slot="markdown-html"] pre code .hljs-section,
+      marked-element [slot="markdown-html"] pre code .hljs-selector-id {
         color: #900;
         font-weight: bold;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-subst {
+      marked-element [slot="markdown-html"] pre code .hljs-subst {
         font-weight: normal;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-type,
-      :host marked-element [slot="markdown-html"] pre code .hljs-class .hljs-title {
+      marked-element [slot="markdown-html"] pre code .hljs-type,
+      marked-element [slot="markdown-html"] pre code .hljs-class .hljs-title {
         color: #458;
         font-weight: bold;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-tag,
-      :host marked-element [slot="markdown-html"] pre code .hljs-name,
-      :host marked-element [slot="markdown-html"] pre code .hljs-attribute {
+      marked-element [slot="markdown-html"] pre code .hljs-tag,
+      marked-element [slot="markdown-html"] pre code .hljs-name,
+      marked-element [slot="markdown-html"] pre code .hljs-attribute {
         color: #000080;
         font-weight: normal;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-regexp,
-      :host marked-element [slot="markdown-html"] pre code .hljs-link {
+      marked-element [slot="markdown-html"] pre code .hljs-regexp,
+      marked-element [slot="markdown-html"] pre code .hljs-link {
         color: #009926;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-symbol,
-      :host marked-element [slot="markdown-html"] pre code .hljs-bullet {
+      marked-element [slot="markdown-html"] pre code .hljs-symbol,
+      marked-element [slot="markdown-html"] pre code .hljs-bullet {
         color: #990073;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-built_in,
-      :host marked-element [slot="markdown-html"] pre code .hljs-builtin-name {
+      marked-element [slot="markdown-html"] pre code .hljs-built_in,
+      marked-element [slot="markdown-html"] pre code .hljs-builtin-name {
         color: #0086b3;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-meta {
+      marked-element [slot="markdown-html"] pre code .hljs-meta {
         color: #999;
         font-weight: bold;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-deletion {
+      marked-element [slot="markdown-html"] pre code .hljs-deletion {
         background: #fdd;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-addition {
+      marked-element [slot="markdown-html"] pre code .hljs-addition {
         background: #dfd;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-emphasis {
+      marked-element [slot="markdown-html"] pre code .hljs-emphasis {
         font-style: italic;
       }
 
-      :host marked-element [slot="markdown-html"] pre code .hljs-strong {
+      marked-element [slot="markdown-html"] pre code .hljs-strong {
         font-weight: bold;
       }
 

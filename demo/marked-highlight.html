@@ -1,11 +1,13 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../marked-import.html">
 
-<link rel="import" href="./md-styles.html">
+<!-- Prefixed rules from highlighting library -->
+<!-- Using default theme styles from highlight-js here -->
+<link rel="import" href="md-styles.html">
 
 <dom-module id="marked-highlight">
 
-  <!-- load assets for highlight-js -->
+  <!-- Load highlighting library. Using suggested CDN from highlight-js here -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
   <template>
@@ -19,7 +21,17 @@
   </template>
 
   <script>
-    class MarkedHighlight extends Polymer.Element {
+    Polymer({
+      is: "marked-highlight",
+
+      _highlightSyntax(e, detail) {
+        detail.code = hljs.highlightAuto(detail.code).value;
+        return e;
+      }
+    });
+
+    /** Below is how you would do this in a pure Polymer 2.x fashion */
+    /* class MarkedHighlight extends Polymer.Element {
       static get is() {return "marked-highlight";}
 
       _highlightSyntax(e, detail) {
@@ -27,7 +39,8 @@
         return e;
       }
     }
-
+    
     window.customElements.define(MarkedHighlight.is, MarkedHighlight);
+    */
   </script>
 </dom-module>

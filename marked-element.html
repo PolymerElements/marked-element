@@ -86,8 +86,8 @@ as you would a regular DOM element:
 
 
 ### Syntax Highlighting
-Provides an opportunity to implement syntax highlighting, [e.g with highlightjs](https://highlightjs.org/).
-An example handler can have this implementation : 
+&lt;marked-element&gt; Provides an opportunity to implement syntax highlighting, e.g with [highlightjs](https://highlightjs.org/).
+An example handler can have this implementation: 
 ```
 <marked-element id="syntaxHighlight" on-syntax-highlight="_highlightSyntax">
   ...
@@ -100,18 +100,19 @@ _highlightSyntax(e, detail) {
    return e;
  }
 ```
-If using highlightjs, ensure the javascript library is loaded. You might also
-need to inline the highlightjs CSS style you intend to use, or load it from a file
-you can edit, so that you can prefix the rules to style content inside the marked-element's shadow DOM
-E.g this rule in the highlightjs defeult CSS style file : 
+If using a highlighting library, ensure that it is loaded prior to attaaching marked-element. 
+It might also be necessary to load any specific CSS by the highlighting library, from a file you can edit. 
+This allows you prefix the CSS rules to style content inside marked-element's shadow DOM
+
+E.g If using highlightjs, this rule in the default CSS theme style file: 
 ```
 .pl-c {
   color: #969896;
 } 
 ```
-becomes :
+goes into a file you can edit, and becomes:
 ``` 
-[slot="markdown-html"] .pl-c {
+marked-element [slot="markdown-html"] .pl-c {
   color: #969896;
 } 
 ```
