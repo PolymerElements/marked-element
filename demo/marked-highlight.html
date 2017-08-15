@@ -1,0 +1,46 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../marked-import.html">
+
+<!-- Prefixed rules from highlighting library -->
+<!-- Using default theme styles from highlight-js here -->
+<link rel="import" href="md-styles.html">
+
+<dom-module id="marked-highlight">
+
+  <!-- Load highlighting library. Using suggested CDN from highlight-js here -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+  <template>
+    <style include="md-styles"></style>
+    <marked-element id="syntaxHighlight" on-syntax-highlight="_highlightSyntax">
+      <div slot="markdown-html"></div>
+      <script type="text/markdown" src="./example.md">
+        Loading markdown...
+      </script>
+    </marked-element>
+  </template>
+
+  <script>
+    Polymer({
+      is: "marked-highlight",
+
+      _highlightSyntax(e, detail) {
+        detail.code = hljs.highlightAuto(detail.code).value;
+        return e;
+      }
+    });
+
+    /** Below is how you would do this in a pure Polymer 2.x fashion */
+    /* class MarkedHighlight extends Polymer.Element {
+      static get is() {return "marked-highlight";}
+
+      _highlightSyntax(e, detail) {
+        detail.code = hljs.highlightAuto(detail.code).value;
+        return e;
+      }
+    }
+    
+    window.customElements.define(MarkedHighlight.is, MarkedHighlight);
+    */
+  </script>
+</dom-module>
