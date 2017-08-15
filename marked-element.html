@@ -149,8 +149,12 @@ as you would a regular DOM element:
         value: false
       },
       /**
-       * Function used to customize a sanitizer.
-       * This need set `sanitize` to true.
+       * Function used to customize a sanitize behavior.
+       * It takes one argument: element String without text Contents.
+       *
+       * e.g. `<div>` `<a href="/">` `</p>'.
+       * Note: To enable this function, must set `sanitize` to true.
+       * WARNING: If you are using this option to untrusted text, you must to prevent XSS Attacks.
        */
       sanitizer: {
         type: Function,
