@@ -1,0 +1,27 @@
+{
+  "name": "@polymer/marked-element",
+  "flat": true,
+  "version": "3.0.0-pre.1",
+  "description": "Element wrapper for the marked library",
+  "contributors": [
+    "The Polymer Project Authors (https://polymer.github.io/AUTHORS.txt)"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "marked",
+    "markdown",
+    "container",
+    "wrapper"
+  ],
+  "main": "marked-element.html",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/marked-element.git"
+  },
+  "license": "https://polymer.github.io/LICENSE.txt",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0-pre.1"
+  },
+  "devDependencies": {}
+}
