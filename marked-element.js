@@ -1,8 +1,7 @@
 import '../polymer/polymer.js';
-import './marked-import.js';
+import '../../marked/lib/marked.js';
 import { Polymer } from '../polymer/lib/legacy/polymer-fn.js';
 import { dom } from '../polymer/lib/legacy/polymer.dom.js';
-'use strict';
 
 Polymer({
   _template: `
