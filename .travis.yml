@@ -3,18 +3,14 @@ sudo: required
 node_js: stable
 addons:
   firefox: latest
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-beta
+  chrome: beta
 before_script:
   - npm install -g polymer-cli
-  - polymer install --variants
+  - yarn
 script:
-  - xvfb-run polymer test
+  - xvfb-run polymer test --npm
   - >-
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test -s 'default';
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test --npm -s 'default';
     fi
 env:
   global:
