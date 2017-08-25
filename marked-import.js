@@ -1,1 +1,1 @@
-import '../marked/lib/marked.js';
+import '../../marked/lib/marked.js';
