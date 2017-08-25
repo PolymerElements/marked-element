@@ -21,7 +21,10 @@
   },
   "license": "https://polymer.github.io/LICENSE.txt",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0-pre.1"
+    "@polymer/polymer": "^3.0.0-pre.1",
+    "marked": "^0.3.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@polymer/paper-styles": "^3.0.0-pre.1"
+  }
 }
