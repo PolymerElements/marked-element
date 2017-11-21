@@ -9,12 +9,12 @@ addons:
     packages:
       - google-chrome-beta
 before_script:
-  - npm install -g polymer-cli web-component-tester
+  - npm install -g polymer-cli
   - polymer install --variants
 script:
-  - xvfb-run wct
+  - xvfb-run polymer test
   - >-
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct -s 'default';
+    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test -s 'default';
     fi
 env:
   global:
