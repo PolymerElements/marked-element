@@ -142,9 +142,9 @@ as you would a regular DOM element:
         value: null
       },
       /**
-       * Sanitize the output. Ignore any HTML that has been input.
+       * Do not sanitize the output. Default ignores any HTML that has been input.
        */
-      sanitize: {
+      noSanitize: {
         type: Boolean,
         value: false
       },
@@ -153,7 +153,7 @@ as you would a regular DOM element:
        * It takes one argument: element String without text Contents.
        *
        * e.g. `<div>` `<a href="/">` `</p>'.
-       * Note: To enable this function, must set `sanitize` to true.
+       * Note: To enable this function, must set `noSanitize` to false.
        * WARNING: If you are using this option to untrusted text, you must to prevent XSS Attacks.
        */
       sanitizer: {
@@ -165,7 +165,7 @@ as you would a regular DOM element:
        * a request and allows fetched unsanitized markdown
        *
        * e.g. fetching markdown via `src` that has HTML.
-       * Note: this value overrides `sanitize` if a request is made.
+       * Note: this value overrides `noSanitize` if a request is made.
        */
       disableRemoteSanitization: {
         type: Boolean,
@@ -200,7 +200,7 @@ as you would a regular DOM element:
     },
 
     observers: [
-      'render(markdown, breaks, pedantic, renderer, sanitize, sanitizer, smartypants, callback)'
+      'render(markdown, breaks, pedantic, renderer, noSanitize, sanitizer, smartypants, callback)'
     ],
 
     ready: function() {
@@ -299,7 +299,7 @@ as you would a regular DOM element:
         renderer: renderer,
         highlight: this._highlight.bind(this),
         breaks: this.breaks,
-        sanitize: this.sanitize,
+        sanitize: !this.noSanitize,
         sanitizer: this.sanitizer,
         pedantic: this.pedantic,
         smartypants: this.smartypants
@@ -355,7 +355,7 @@ as you would a regular DOM element:
         // Note: if we are using the file:// protocol, the status code will be 0
         // for all outcomes (successful or otherwise).
         if (status === 0 || (status >= 200 && status < 300)) {
-          this.sanitize = !this.disableRemoteSanitization;
+          this.noSanitize = this.disableRemoteSanitization;
           this.markdown = e.target.response;
         } else {
           this._handleError(e);

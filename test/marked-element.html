@@ -110,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="Sanitizer">
     <template>
-      <marked-element sanitize>
+      <marked-element>
         <div id="output" slot="markdown-html"></div>
         <script type="text/markdown">
 [Link](http://url.com" onclick="alert(1)")
@@ -182,6 +182,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="NoSanitize">
+    <template>
+      <marked-element no-sanitize><div>do not sanitize</div></marked-element>
+    </template>
+  </test-fixture>
+
   <test-fixture id="UnsanitizedRemoteContent">
     <template>
       <marked-element disable-remote-sanitization>
@@ -219,7 +225,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         outputElement = document.getElementById('output');
       });
       test('has sanitize', function() {
-        expect(markedElement.sanitize).to.equal(false);
+        expect(markedElement.noSanitize).to.equal(false);
       });
       test('has sanitizer', function() {
         expect(markedElement.sanitizer).to.equal(null);
@@ -562,7 +568,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             proofElement.innerHTML = '<p>&lt;div&gt;&lt;/div&gt;</p>\n';
 
             markedElement.addEventListener('marked-loadend', function() {
-              assert.isTrue(markedElement.sanitize);
+              assert.isNotTrue(markedElement.noSanitize);
               assert.isNotTrue(markedElement.disableRemoteSanitization);
               expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
               done();
@@ -578,15 +584,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           test('does not sanitize remote content', function(done) {
             outputElement = markedElement.querySelector('#output');
             proofElement = document.createElement('div');
-            var div = document.createElement('div');
             proofElement.innerHTML = '<div></div>';
 
             markedElement.addEventListener('marked-loadend', function() {
-              assert.isNotTrue(markedElement.sanitize);
+              assert.isTrue(markedElement.noSanitize);
               assert.isTrue(markedElement.disableRemoteSanitization);
               expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
               done();
             });
+          });
+        });
+        suite('no-sanitize', function() {
+          setup(function() {
+            markedElement = fixture('NoSanitize');
+          });
+
+          test('does not sanitize content when no-sanitize is set', function() {
+            var proofContent = '<div>do not sanitize</div>';
+            expect(proofContent).to.equal(markedElement.innerHTML);
           });
         });
       });
