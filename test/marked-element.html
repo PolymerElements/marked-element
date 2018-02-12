@@ -184,7 +184,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="NoSanitize">
     <template>
-      <marked-element no-sanitize><div>do not sanitize</div></marked-element>
+      <marked-element no-sanitize>
+          <div id="output" slot="markdown-html"></div>
+          <script type="text/markdown"><div>do not sanitize</div></script>
+      </marked-element>
     </template>
   </test-fixture>
 
@@ -600,8 +603,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           });
 
           test('does not sanitize content when no-sanitize is set', function() {
+            outputElement = markedElement.querySelector('#output');
             var proofContent = '<div>do not sanitize</div>';
-            expect(proofContent).to.equal(markedElement.innerHTML);
+            expect(proofContent).to.equal(outputElement.innerHTML);
           });
         });
       });
