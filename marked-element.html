@@ -253,7 +253,8 @@ as you would a regular DOM element:
     /**
      * Unindents the markdown source that will be rendered.
      *
-     * @param {string} text
+     * @param {!string} text
+     * @return {!string}
      */
     unindent: function(text) {
       return this._unindent(text);
@@ -317,8 +318,9 @@ as you would a regular DOM element:
      * is also known as syntax highlighting. One example would be to use a prebuilt syntax
      * highlighting library, e.g with [highlightjs](https://highlightjs.org/).
      *
-     * @param {string} code
-     * @param {string} lang
+     * @param {!string} code
+     * @param {!string} lang
+     * @return {!string}
      * @event syntax-highlight
      */
     _highlight: function(code, lang) {
@@ -328,6 +330,7 @@ as you would a regular DOM element:
 
     /**
      * @param {string} text
+     * @return {!string}
      */
     _unindent: function(text) {
       if (!text) return text;
@@ -380,7 +383,7 @@ as you would a regular DOM element:
     /**
      * Fired when an error is received while fetching remote markdown content.
      *
-     * @param {Event} e
+     * @param {!Event} e
      * @event marked-request-error
      */
     _handleError: function(e) {
@@ -391,7 +394,7 @@ as you would a regular DOM element:
     },
 
     /**
-     * @param {MutationRecord} mutation
+     * @param {!Array<!MutationRecord>} mutation
      */
     _onScriptAttributeChanged: function(mutation) {
       if (mutation[0].attributeName !== 'src') {

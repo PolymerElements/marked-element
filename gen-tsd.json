@@ -1,9 +1,4 @@
 {
-  "excludeFiles": [
-    "test/**",
-    "demo/**",
-    "index.html"
-  ],
   "removeReferences": [
     "../marked/lib/marked.d.ts"
   ]

@@ -169,7 +169,7 @@ interface MarkedElementElement extends Polymer.Element {
   /**
    * Unindents the markdown source that will be rendered.
    */
-  unindent(text: String|null): any;
+  unindent(text: string): string;
 
   /**
    * Renders `markdown` into this element's DOM.
@@ -188,19 +188,19 @@ interface MarkedElementElement extends Polymer.Element {
    * is also known as syntax highlighting. One example would be to use a prebuilt syntax
    * highlighting library, e.g with [highlightjs](https://highlightjs.org/).
    */
-  _highlight(code: String|null, lang: String|null): any;
-  _unindent(text: String|null): any;
+  _highlight(code: string, lang: string): string;
+  _unindent(text: string): string;
 
   /**
    * Fired when the XHR finishes loading
    */
-  _request(url: String|null): any;
+  _request(url: string): any;
 
   /**
    * Fired when an error is received while fetching remote markdown content.
    */
-  _handleError(e: Event|null): void;
-  _onScriptAttributeChanged(mutation: MutationRecord|null): void;
+  _handleError(e: Event): void;
+  _onScriptAttributeChanged(mutation: MutationRecord[]): void;
 }
 
 interface HTMLElementTagNameMap {
