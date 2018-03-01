@@ -13,6 +13,7 @@ thing! https://github.com/PolymerLabs/tedium/issues
 -->
 
 [![Build status](https://travis-ci.org/PolymerElements/marked-element.svg?branch=master)](https://travis-ci.org/PolymerElements/marked-element)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/PolymerElements/marked-element)
 
 
 ## &lt;marked-element&gt;
