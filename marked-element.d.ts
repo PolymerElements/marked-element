@@ -93,19 +93,23 @@ interface MarkedElementElement extends Polymer.Element {
   markdown: string|null|undefined;
 
   /**
-   * Enable GFM line breaks (regular newlines instead of two spaces for breaks)
+   * Enable GFM line breaks (regular newlines instead of two spaces for
+   * breaks)
    */
   breaks: boolean|null|undefined;
 
   /**
-   * Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior.
+   * Conform to obscure parts of markdown.pl as much as possible. Don't fix
+   * any of the original markdown bugs or poor behavior.
    */
   pedantic: boolean|null|undefined;
 
   /**
-   * Function used to customize a renderer based on the [API specified in the Marked
+   * Function used to customize a renderer based on the [API specified in the
+   * Marked
    * library](https://github.com/chjj/marked#overriding-renderer-methods).
-   * It takes one argument: a marked renderer object, which is mutated by the function.
+   * It takes one argument: a marked renderer object, which is mutated by the
+   * function.
    */
   renderer: Function|null|undefined;
 
@@ -120,7 +124,8 @@ interface MarkedElementElement extends Polymer.Element {
    *
    * e.g. `<div>` `<a href="/">` `</p>'.
    * Note: To enable this function, must set `sanitize` to true.
-   * WARNING: If you are using this option to untrusted text, you must to prevent XSS Attacks.
+   * WARNING: If you are using this option to untrusted text, you must to
+   * prevent XSS Attacks.
    */
   sanitizer: Function|null|undefined;
 
@@ -140,7 +145,8 @@ interface MarkedElementElement extends Polymer.Element {
 
   /**
    * Callback function invoked by Marked after HTML has been rendered.
-   * It must take two arguments: err and text and must return the resulting text.
+   * It must take two arguments: err and text and must return the resulting
+   * text.
    */
   callback: Function|null|undefined;
 
@@ -184,9 +190,10 @@ interface MarkedElementElement extends Polymer.Element {
 
   /**
    * Fired when the content is being processed and before it is rendered.
-   * Provides an opportunity to highlight code blocks based on the programming language used. This
-   * is also known as syntax highlighting. One example would be to use a prebuilt syntax
-   * highlighting library, e.g with [highlightjs](https://highlightjs.org/).
+   * Provides an opportunity to highlight code blocks based on the programming
+   * language used. This is also known as syntax highlighting. One example would
+   * be to use a prebuilt syntax highlighting library, e.g with
+   * [highlightjs](https://highlightjs.org/).
    */
   _highlight(code: string, lang: string): string;
   _unindent(text: string): string;
