@@ -249,7 +249,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         markedElement.callback = function(err, text) {
           assert.equal(text, '<p>Some content</p>\n');
           return '<div>Overridden!</div>';
-        } expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
+        };
+        expect(outputElement.innerHTML).to.equal(proofElement.innerHTML);
       });
     });
 
