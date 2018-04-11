@@ -114,52 +114,39 @@ as you would a regular DOM element:
       /**
        * The markdown source that should be rendered by this element.
        */
-      markdown: {
-        type: String,
-        value: null
-      },
+      markdown: {type: String, value: null},
       /**
-       * Enable GFM line breaks (regular newlines instead of two spaces for breaks)
+       * Enable GFM line breaks (regular newlines instead of two spaces for
+       * breaks)
        */
-      breaks: {
-        type: Boolean,
-        value: false
-      },
+      breaks: {type: Boolean, value: false},
       /**
-       * Conform to obscure parts of markdown.pl as much as possible. Don't fix any of the original markdown bugs or poor behavior.
+       * Conform to obscure parts of markdown.pl as much as possible. Don't fix
+       * any of the original markdown bugs or poor behavior.
        */
-      pedantic: {
-        type: Boolean,
-        value: false
-      },
+      pedantic: {type: Boolean, value: false},
       /**
-       * Function used to customize a renderer based on the [API specified in the Marked
+       * Function used to customize a renderer based on the [API specified in the
+       * Marked
        * library](https://github.com/chjj/marked#overriding-renderer-methods).
-       * It takes one argument: a marked renderer object, which is mutated by the function.
+       * It takes one argument: a marked renderer object, which is mutated by the
+       * function.
        */
-      renderer: {
-        type: Function,
-        value: null
-      },
+      renderer: {type: Function, value: null},
       /**
        * Sanitize the output. Ignore any HTML that has been input.
        */
-      sanitize: {
-        type: Boolean,
-        value: false
-      },
+      sanitize: {type: Boolean, value: false},
       /**
        * Function used to customize a sanitize behavior.
        * It takes one argument: element String without text Contents.
        *
        * e.g. `<div>` `<a href="/">` `</p>'.
        * Note: To enable this function, must set `sanitize` to true.
-       * WARNING: If you are using this option to untrusted text, you must to prevent XSS Attacks.
+       * WARNING: If you are using this option to untrusted text, you must to
+       * prevent XSS Attacks.
        */
-      sanitizer: {
-        type: Function,
-        value: null
-      },
+      sanitizer: {type: Function, value: null},
       /**
        * If true, disables the default sanitization of any markdown received by
        * a request and allows fetched unsanitized markdown
@@ -167,36 +154,24 @@ as you would a regular DOM element:
        * e.g. fetching markdown via `src` that has HTML.
        * Note: this value overrides `sanitize` if a request is made.
        */
-      disableRemoteSanitization: {
-        type: Boolean,
-        value: false
-      },
+      disableRemoteSanitization: {type: Boolean, value: false},
       /**
        * Use "smart" typographic punctuation for things like quotes and dashes.
        */
-      smartypants: {
-        type: Boolean,
-        value: false
-      },
+      smartypants: {type: Boolean, value: false},
       /**
        * Callback function invoked by Marked after HTML has been rendered.
-       * It must take two arguments: err and text and must return the resulting text.
+       * It must take two arguments: err and text and must return the resulting
+       * text.
        */
-      callback: {
-        type: Function,
-        value: null
-      },
+      callback: {type: Function, value: null},
       /**
        * A reference to the XMLHttpRequest instance used to generate the
        * network request.
        *
        * @type {XMLHttpRequest}
        */
-      xhr: {
-        type: Object,
-        notify: true,
-        readOnly: true
-      }
+      xhr: {type: Object, notify: true, readOnly: true}
     },
 
     observers: [
@@ -208,9 +183,11 @@ as you would a regular DOM element:
         return;
       }
 
-      // Use the Markdown from the first `<script>` descendant whose MIME type starts with
-      // "text/markdown". Script elements beyond the first are ignored.
-      this._markdownElement = Polymer.dom(this).querySelector('[type="text/markdown"]');
+      // Use the Markdown from the first `<script>` descendant whose MIME type
+      // starts with "text/markdown". Script elements beyond the first are
+      // ignored.
+      this._markdownElement =
+          Polymer.dom(this).querySelector('[type="text/markdown"]');
       if (!this._markdownElement) {
         return;
       }
@@ -223,9 +200,9 @@ as you would a regular DOM element:
         this.markdown = this._unindent(this._markdownElement.textContent);
       }
 
-      var observer = new MutationObserver(this._onScriptAttributeChanged
-          .bind(this));
-      observer.observe(this._markdownElement, { attributes: true });
+      var observer =
+          new MutationObserver(this._onScriptAttributeChanged.bind(this));
+      observer.observe(this._markdownElement, {attributes: true});
     },
 
     /**
@@ -260,8 +237,9 @@ as you would a regular DOM element:
       return this._unindent(text);
     },
 
-    get outputElement () {
-      var child = Polymer.dom(this).queryDistributedElements('[slot="markdown-html"]')[0];
+    get outputElement() {
+      var child =
+          Polymer.dom(this).queryDistributedElements('[slot="markdown-html"]')[0];
       return child || this.$.content;
     },
 
@@ -308,15 +286,17 @@ as you would a regular DOM element:
         smartypants: this.smartypants
       };
 
-      Polymer.dom(this._outputElement).innerHTML = marked(this.markdown, opts, this.callback);
+      Polymer.dom(this._outputElement).innerHTML =
+          marked(this.markdown, opts, this.callback);
       this.fire('marked-render-complete', {}, {composed: true});
     },
 
     /**
      * Fired when the content is being processed and before it is rendered.
-     * Provides an opportunity to highlight code blocks based on the programming language used. This
-     * is also known as syntax highlighting. One example would be to use a prebuilt syntax
-     * highlighting library, e.g with [highlightjs](https://highlightjs.org/).
+     * Provides an opportunity to highlight code blocks based on the programming
+     * language used. This is also known as syntax highlighting. One example would
+     * be to use a prebuilt syntax highlighting library, e.g with
+     * [highlightjs](https://highlightjs.org/).
      *
      * @param {string} code
      * @param {string} lang
@@ -324,7 +304,8 @@ as you would a regular DOM element:
      * @event syntax-highlight
      */
     _highlight: function(code, lang) {
-      var event = this.fire('syntax-highlight', {code: code, lang: lang}, {composed: true});
+      var event = this.fire(
+          'syntax-highlight', {code: code, lang: lang}, {composed: true});
       return event.detail.code || code;
     },
 
@@ -333,17 +314,24 @@ as you would a regular DOM element:
      * @return {string}
      */
     _unindent: function(text) {
-      if (!text) return text;
-      var lines  = text.replace(/\t/g, '  ').split('\n');
+      if (!text)
+        return text;
+      var lines = text.replace(/\t/g, '  ').split('\n');
       var indent = lines.reduce(function(prev, line) {
-        if (/^\s*$/.test(line)) return prev;  // Completely ignore blank lines.
+        if (/^\s*$/.test(line))
+          return prev;  // Completely ignore blank lines.
 
         var lineIndent = line.match(/^(\s*)/)[0].length;
-        if (prev === null) return lineIndent;
+        if (prev === null)
+          return lineIndent;
         return lineIndent < prev ? lineIndent : prev;
       }, null);
 
-      return lines.map(function(l) { return l.substr(indent); }).join('\n');
+      return lines
+          .map(function(l) {
+            return l.substr(indent);
+          })
+          .join('\n');
     },
 
     /**
@@ -404,5 +392,4 @@ as you would a regular DOM element:
       this._request(this._markdownElement.src);
     }
   });
-
 </script>
