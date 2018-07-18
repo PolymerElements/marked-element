@@ -190,7 +190,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     import '@polymer/polymer/polymer-legacy.js';
     import '../marked-element.js';
     import {dom, flush} from '@polymer/polymer/lib/legacy/polymer.dom.js';
-    import {PolymerElement} from '@polymer/polymer/polymer-element.js';
 
     // Thanks IE10.
     function isHidden(element) {
@@ -508,10 +507,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('changing remote content with data binding', function() {
         setup(function() {
           markedHost = fixture('ChangingRemoteContent');
-
-          if (!PolymerElement) {
-            markedHost = markedHost.children[0];
-          }
 
           markedElement = markedHost.$.markedElement;
           outputElement = markedHost.$.output;
