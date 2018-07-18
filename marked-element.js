@@ -7,6 +7,13 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
+import '@polymer/polymer/polymer-legacy.js';
+import './marked-import.js';
+
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
 /**
 Element wrapper for the [marked](https://github.com/chjj/marked) library.
 
@@ -82,22 +89,8 @@ as you would a regular DOM element:
     }
 
 @element marked-element
-@group Molecules
-@hero hero.svg
 @demo demo/index.html
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
-import '@polymer/polymer/polymer-legacy.js';
-
-import './marked-import.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
-
 Polymer({
   _template: html`
     <style>
@@ -108,26 +101,34 @@ Polymer({
     <slot name="markdown-html">
       <div id="content"></div>
     </slot>
-`,
+  `,
 
   is: 'marked-element',
 
   properties: {
-
     /**
      * The markdown source that should be rendered by this element.
      */
-    markdown: {type: String, value: null},
+    markdown: {
+      type: String,
+      value: null,
+    },
     /**
      * Enable GFM line breaks (regular newlines instead of two spaces for
      * breaks)
      */
-    breaks: {type: Boolean, value: false},
+    breaks: {
+      type: Boolean,
+      value: false,
+    },
     /**
      * Conform to obscure parts of markdown.pl as much as possible. Don't fix
      * any of the original markdown bugs or poor behavior.
      */
-    pedantic: {type: Boolean, value: false},
+    pedantic: {
+      type: Boolean,
+      value: false,
+    },
     /**
      * Function used to customize a renderer based on the [API specified in the
      * Marked
@@ -135,11 +136,17 @@ Polymer({
      * It takes one argument: a marked renderer object, which is mutated by the
      * function.
      */
-    renderer: {type: Function, value: null},
+    renderer: {
+      type: Function,
+      value: null,
+    },
     /**
      * Sanitize the output. Ignore any HTML that has been input.
      */
-    sanitize: {type: Boolean, value: false},
+    sanitize: {
+      type: Boolean,
+      value: false,
+    },
     /**
      * Function used to customize a sanitize behavior.
      * It takes one argument: element String without text Contents.
@@ -149,7 +156,10 @@ Polymer({
      * WARNING: If you are using this option to untrusted text, you must to
      * prevent XSS Attacks.
      */
-    sanitizer: {type: Function, value: null},
+    sanitizer: {
+      type: Function,
+      value: null,
+    },
     /**
      * If true, disables the default sanitization of any markdown received by
      * a request and allows fetched unsanitized markdown
@@ -157,24 +167,37 @@ Polymer({
      * e.g. fetching markdown via `src` that has HTML.
      * Note: this value overrides `sanitize` if a request is made.
      */
-    disableRemoteSanitization: {type: Boolean, value: false},
+    disableRemoteSanitization: {
+      type: Boolean,
+      value: false,
+    },
     /**
      * Use "smart" typographic punctuation for things like quotes and dashes.
      */
-    smartypants: {type: Boolean, value: false},
+    smartypants: {
+      type: Boolean,
+      value: false,
+    },
     /**
      * Callback function invoked by Marked after HTML has been rendered.
      * It must take two arguments: err and text and must return the resulting
      * text.
      */
-    callback: {type: Function, value: null},
+    callback: {
+      type: Function,
+      value: null,
+    },
     /**
      * A reference to the XMLHttpRequest instance used to generate the
      * network request.
      *
      * @type {XMLHttpRequest}
      */
-    xhr: {type: Object, notify: true, readOnly: true}
+    xhr: {
+      type: Object,
+      notify: true,
+      readOnly: true,
+    },
   },
 
   observers: [
@@ -189,8 +212,7 @@ Polymer({
     // Use the Markdown from the first `<script>` descendant whose MIME type
     // starts with "text/markdown". Script elements beyond the first are
     // ignored.
-    this._markdownElement =
-        dom(this).querySelector('[type="text/markdown"]');
+    this._markdownElement = dom(this).querySelector('[type="text/markdown"]');
     if (!this._markdownElement) {
       return;
     }
@@ -241,8 +263,7 @@ Polymer({
   },
 
   get outputElement() {
-    var child =
-        dom(this).queryDistributedElements('[slot="markdown-html"]')[0];
+    var child = dom(this).queryDistributedElements('[slot="markdown-html"]')[0];
     return child || this.$.content;
   },
 
