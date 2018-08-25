@@ -27,7 +27,7 @@
     "generate-types": "gen-typescript-declarations --deleteExisting --outDir . --verify",
     "prepack": "npm run generate-types"
   },
-  "version": "3.0.0-pre.22",
+  "version": "3.0.0-pre.23",
   "main": "marked-element.js",
   "author": "The Polymer Project Authors (https://polymer.github.io/AUTHORS.txt)",
   "dependencies": {
