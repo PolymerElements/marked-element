@@ -10,7 +10,7 @@ found at http://polymer.github.io/PATENTS.txt
 */
 import 'marked/lib/marked.js';
 
-if (!window.marked && window.require) {
+if (!window.marked) {
   // For webpack support for the Polymer 3 version created by the Polymer
   // Modulizer More info:
   // https://github.com/PolymerElements/marked-element/issues/81
