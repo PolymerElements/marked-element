@@ -1,5 +1,8 @@
 {
   "removeReferences": [
     "../marked/lib/marked.d.ts"
+  ],
+  "excludeFiles": [
+    "marked-import.js"
   ]
 }
