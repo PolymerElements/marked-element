@@ -8,11 +8,11 @@ found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
 part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
 */
-import 'marked/lib/marked.js';
+import * as marked from 'marked/lib/marked.js';
 
 if (!window.marked) {
   // For webpack support for the Polymer 3 version created by the Polymer
   // Modulizer More info:
   // https://github.com/PolymerElements/marked-element/issues/81
-  window.marked = require('../../marked/lib/marked.js');
+  window.marked = marked;
 }
