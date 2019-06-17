@@ -92,6 +92,7 @@ as you would a regular DOM element:
 @demo demo/index.html
 */
 Polymer({
+  /** @override */
   _template: html`
     <style>
       :host {
@@ -204,6 +205,7 @@ Polymer({
     'render(markdown, breaks, pedantic, renderer, sanitize, sanitizer, smartypants, callback)'
   ],
 
+  /** @override */
   ready: function() {
     if (this.markdown) {
       return;
@@ -240,7 +242,7 @@ Polymer({
    *  * `attached` fires top-down, so we can give ancestors a chance to
    *    register listeners for the `syntax-highlight` event _before_ we render
    *    any markdown.
-   *
+   * @override
    */
   attached: function() {
     this._attached = true;
@@ -248,6 +250,7 @@ Polymer({
     this.render();
   },
 
+  /** @override */
   detached: function() {
     this._attached = false;
   },
