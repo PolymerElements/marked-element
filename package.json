@@ -31,7 +31,7 @@
   "main": "marked-element.js",
   "author": "The Polymer Project Authors (https://polymer.github.io/AUTHORS.txt)",
   "dependencies": {
-    "marked": "~0.3.9",
+    "marked": "~4.0.10",
     "@polymer/polymer": "^3.0.0"
   }
 }
